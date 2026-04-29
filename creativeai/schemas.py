@@ -43,6 +43,16 @@ class GenerationConfig:
     prompt_mode: Literal["completion", "chat", "auto"] = "auto"
     grammar_mode: Literal["auto", "word_list", "idea_list"] = "auto"
     stop: list[str] = field(default_factory=list)
+    sampler_profile: str = "manual"
+    top_k: int = 0
+    min_p: float = 0.0
+    typical_p: float = 0.0
+    repeat_penalty: float = 1.0
+    frequency_penalty: float = 0.0
+    presence_penalty: float = 0.0
+    mirostat_mode: int = 0
+    mirostat_tau: float = 0.0
+    mirostat_eta: float = 0.0
     n_ctx: int = 4096
     n_threads: int = 0
     n_batch: int = 512
@@ -65,6 +75,10 @@ class RunManifest:
     created_at_utc: str
     host: str
     session_id: str = ""
+    git_full_hash: str = ""
+    git_dirty: bool = False
+    python_version: str = ""
+    platform: str = ""
     extra: dict[str, Any] = field(default_factory=dict)
 
 

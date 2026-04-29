@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.metadata
 import json
 import os
 import platform
 import re
 import subprocess
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -80,6 +82,55 @@ def resolve_git_hash(cwd: str | Path | None = None) -> str:
         return "nogit"
 
 
+def resolve_git_full_hash(cwd: str | Path | None = None) -> str:
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=cwd,
+            check=True,
+            text=True,
+            capture_output=True,
+        )
+        return result.stdout.strip()
+    except Exception:
+        return "nogit"
+
+
+def git_dirty(cwd: str | Path | None = None) -> bool:
+    try:
+        result = subprocess.run(
+            ["git", "status", "--porcelain"],
+            cwd=cwd,
+            check=True,
+            text=True,
+            capture_output=True,
+        )
+        return bool(result.stdout.strip())
+    except Exception:
+        return False
+
+
+def _package_version(name: str) -> str:
+    try:
+        return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError:
+        return "not-installed"
+
+
+def environment_snapshot() -> dict[str, Any]:
+    package_names = ["creativeai", "llama-cpp-python", "numpy", "pandas", "pyarrow", "torch", "sentence-transformers"]
+    return {
+        "python_version": sys.version.split()[0],
+        "python_executable": sys.executable,
+        "platform": platform.platform(),
+        "machine": platform.machine(),
+        "processor": platform.processor(),
+        "packages": {name: _package_version(name) for name in package_names},
+        "embedding_backend_env": os.environ.get("CREATIVEAI_EMBEDDING_BACKEND", ""),
+        "require_semantic_env": os.environ.get("CREATIVEAI_REQUIRE_SEMANTIC", ""),
+    }
+
+
 
 def build_manifest(
     run_id: str,
@@ -90,16 +141,21 @@ def build_manifest(
     session_id: str = "",
     extra: dict[str, Any] | None = None,
 ) -> RunManifest:
+    env = environment_snapshot()
     return RunManifest(
         run_id=run_id,
         git_hash=resolve_git_hash(cwd),
+        git_full_hash=resolve_git_full_hash(cwd),
+        git_dirty=git_dirty(cwd),
         model_hash=model_hash,
         quantization=quantization,
         backend=backend,
         created_at_utc=utc_now_iso(),
         host=platform.node() or "unknown-host",
         session_id=session_id,
-        extra=extra or {},
+        python_version=str(env.get("python_version", "")),
+        platform=str(env.get("platform", "")),
+        extra={**(extra or {}), "environment": env},
     )
 
 

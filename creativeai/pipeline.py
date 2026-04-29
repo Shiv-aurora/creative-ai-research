@@ -5,6 +5,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
+from creativeai.decoding import decoding_fingerprint, decoding_settings
 from creativeai.io_utils import (
     append_jsonl,
     build_manifest,
@@ -38,9 +39,11 @@ def _compute_group_id(task_spec: TaskSpec, config: GenerationConfig, metadata: d
     compute_tag = config.compute_tag.strip() if isinstance(config.compute_tag, str) else ""
     if not compute_tag:
         compute_tag = "default"
+    decoding_bits = decoding_settings(config)
+    decoding_part = "|".join(f"{key}={decoding_bits.get(key)}" for key in sorted(decoding_bits))
     return (
         f"{config.model_id}|{task_id}|{prompt_key}|seed={config.seed}|temp={config.temperature}|"
-        f"top_p={config.top_p}|tag={compute_tag}"
+        f"top_p={config.top_p}|{decoding_part}|tag={compute_tag}"
     )
 
 
@@ -73,7 +76,15 @@ def generate_run(
         model_hash=getattr(model, "model_hash", "unknown"),
         cwd=Path.cwd(),
         session_id=session_id,
-        extra={"task_id": task_spec.task_id, "method": method_runner.method_name},
+        extra={
+            "task_id": task_spec.task_id,
+            "method": method_runner.method_name,
+            "model_path": str(getattr(model, "model_path", "")),
+            "effective_n_threads": int(getattr(model, "effective_n_threads", 0) or 0),
+            "effective_n_threads_batch": int(getattr(model, "effective_n_threads_batch", 0) or 0),
+            "n_batch": int(getattr(model, "n_batch", 0) or 0),
+            "n_ubatch": int(getattr(model, "n_ubatch", 0) or 0),
+        },
     )
 
     metadata = dict(task_spec.metadata)
@@ -84,6 +95,8 @@ def generate_run(
     tokens_out = int(getattr(result, "tokens_out", 0) or token_count_from_list(result.output))
     tokens_total = max(0, tokens_in + tokens_out)
     compute_group_id = _compute_group_id(task_spec, config, metadata)
+    decoding = decoding_settings(config)
+    fingerprint = decoding_fingerprint(config)
 
     metadata["generation_calls"] = effective_calls
     metadata["effective_calls"] = effective_calls
@@ -93,6 +106,12 @@ def generate_run(
     metadata["tokens_out"] = tokens_out
     metadata["tokens_total"] = tokens_total
     metadata["compute_group_id"] = compute_group_id
+    metadata["decoding_settings"] = decoding
+    metadata["decoding_fingerprint"] = fingerprint
+    metadata["sampler_profile"] = config.sampler_profile
+    metadata["seed"] = config.seed
+    metadata["temperature"] = config.temperature
+    metadata["top_p"] = config.top_p
     metadata["phase3_stage"] = phase3_stage
 
     record = RunRecord(

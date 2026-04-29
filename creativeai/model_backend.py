@@ -1,10 +1,10 @@
 from __future__ import annotations
 
+import inspect
 import json
 import os
 import random
 import re
-import inspect
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol
@@ -182,6 +182,8 @@ class LlamaCppAdapter:
     n_batch: int = 512
     n_ubatch: int = 512
     n_threads_batch: int = 0
+    effective_n_threads: int = 0
+    effective_n_threads_batch: int = 0
 
     def __post_init__(self) -> None:
         try:
@@ -194,6 +196,8 @@ class LlamaCppAdapter:
         init_params = set(inspect.signature(Llama.__init__).parameters)
         resolved_threads = self.n_threads if self.n_threads > 0 else _default_thread_count()
         resolved_threads_batch = self.n_threads_batch if self.n_threads_batch > 0 else resolved_threads
+        self.effective_n_threads = resolved_threads
+        self.effective_n_threads_batch = resolved_threads_batch
 
         kwargs: dict[str, object] = {
             "model_path": self.model_path,
@@ -226,6 +230,7 @@ class LlamaCppAdapter:
             "max_tokens": config.max_tokens,
             "seed": config.seed,
         }
+        gen_kwargs.update(_configured_sampler_kwargs(config))
         if config.stop:
             gen_kwargs["stop"] = config.stop
 
@@ -250,7 +255,7 @@ class LlamaCppAdapter:
                     },
                     {"role": "user", "content": prompt},
                 ]
-                chat_kwargs = dict(gen_kwargs)
+                chat_kwargs = _filter_supported_kwargs(self._llama.create_chat_completion, gen_kwargs)
                 if grammar is not None:
                     chat_kwargs["grammar"] = grammar
                 result = self._llama.create_chat_completion(messages=messages, **chat_kwargs)
@@ -258,7 +263,7 @@ class LlamaCppAdapter:
             except Exception:
                 pass
 
-        completion_kwargs = dict(gen_kwargs)
+        completion_kwargs = _filter_supported_kwargs(self._llama.create_completion, gen_kwargs)
         if grammar is not None:
             completion_kwargs["grammar"] = grammar
         try:
@@ -269,6 +274,40 @@ class LlamaCppAdapter:
             completion_kwargs.pop("grammar", None)
             result = self._llama.create_completion(prompt=prompt, **completion_kwargs)
         return str(result["choices"][0]["text"])
+
+
+def _configured_sampler_kwargs(config: GenerationConfig) -> dict[str, object]:
+    kwargs: dict[str, object] = {}
+    if config.top_k > 0:
+        kwargs["top_k"] = int(config.top_k)
+    if config.min_p > 0:
+        kwargs["min_p"] = float(config.min_p)
+    if config.typical_p > 0:
+        kwargs["typical_p"] = float(config.typical_p)
+    if config.repeat_penalty and abs(float(config.repeat_penalty) - 1.0) > 1e-9:
+        kwargs["repeat_penalty"] = float(config.repeat_penalty)
+    if config.frequency_penalty:
+        kwargs["frequency_penalty"] = float(config.frequency_penalty)
+    if config.presence_penalty:
+        kwargs["presence_penalty"] = float(config.presence_penalty)
+    if config.mirostat_mode > 0:
+        kwargs["mirostat_mode"] = int(config.mirostat_mode)
+        if config.mirostat_tau > 0:
+            kwargs["mirostat_tau"] = float(config.mirostat_tau)
+        if config.mirostat_eta > 0:
+            kwargs["mirostat_eta"] = float(config.mirostat_eta)
+    return kwargs
+
+
+def _filter_supported_kwargs(callable_obj: object, kwargs: dict[str, object]) -> dict[str, object]:
+    try:
+        signature = inspect.signature(callable_obj)
+    except (TypeError, ValueError):
+        return dict(kwargs)
+    params = signature.parameters
+    if any(p.kind == inspect.Parameter.VAR_KEYWORD for p in params.values()):
+        return dict(kwargs)
+    return {key: value for key, value in kwargs.items() if key in params}
 
 
 def _json_array_grammar_exact_count(count: int = 10) -> str:
