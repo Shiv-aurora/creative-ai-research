@@ -1,0 +1,8 @@
+{
+  "gemma-2-2b": "/absolute/path/to/gemma-2-2b-q4_k_m.gguf",
+  "gemma-2-2b-it": "/absolute/path/to/gemma-2-2b-it-q4_k_m.gguf",
+  "qwen2.5-3b": "/absolute/path/to/qwen2.5-3b-q4_k_m.gguf",
+  "qwen2.5-3b-instruct": "/absolute/path/to/qwen2.5-3b-instruct-q4_k_m.gguf",
+  "mistral-7b-v0.3": "/absolute/path/to/mistral-7b-v0.3-q4_k_m.gguf",
+  "mistral-7b-instruct-v0.3": "/absolute/path/to/mistral-7b-instruct-v0.3-q4_k_m.gguf"
+}

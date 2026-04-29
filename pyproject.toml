@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "creativeai"
+version = "0.1.0"
+description = "Local-first creativity-under-constraints research harness"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "CreativeAI Research" }
+]
+dependencies = [
+  "matplotlib>=3.7"
+]
+
+[project.optional-dependencies]
+llama = [
+  "llama-cpp-python>=0.2.90"
+]
+data = [
+  "pandas>=2.0",
+  "pyarrow>=14.0"
+]
+semantic = [
+  "sentence-transformers>=3.0"
+]
+dev = [
+  "ruff>=0.5"
+]
+
+[project.scripts]
+creativeai = "creativeai.cli:main"
+
+[tool.setuptools]
+packages = ["creativeai"]

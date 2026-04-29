@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+build/
+*.egg-info/
+outputs/
+*.parquet
+.DS_Store
+model_paths.downloaded.json
+models/gguf/*.gguf

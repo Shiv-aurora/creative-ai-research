@@ -1,0 +1,19 @@
+{
+  "tasks": "dat,cdat,aut",
+  "methods": "one_shot,best_of_k_one_shot,restlessness_best,restlessness_last_iter",
+  "models": "gemma-2b,gemma-2b-it,qwen2.5-3b,qwen2.5-3b-instruct,mistral-7b-v0.3,mistral-7b-instruct-v0.3",
+  "temperatures": "0.2,0.7,1.0,1.3",
+  "seeds": "11,37,73,101,149",
+  "top_p": 0.9,
+  "max_tokens": 512,
+  "quantization": "q4_k_m",
+  "strict_json": true,
+  "max_retries": 2,
+  "prompt_mode": "completion",
+  "restlessness_k": 3,
+  "best_of_k": 4,
+  "limit_cues": 120,
+  "limit_aut": 90,
+  "token_budget": 800,
+  "model_path_map": "model_paths.downloaded.json"
+}
