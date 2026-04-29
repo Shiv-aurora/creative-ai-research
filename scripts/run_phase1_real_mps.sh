@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+RUNS_DIR="${1:-outputs/phase1_real/runs}"
+SCORES_DIR="${2:-outputs/phase1_real/scores}"
+ANALYSIS_DIR="${3:-outputs/phase1_real/analysis}"
+
+export BACKEND="${BACKEND:-llama_cpp}"
+export MODEL_PATH_MAP="${MODEL_PATH_MAP:-model_paths.downloaded.json}"
+export MODELS="${MODELS:-gemma-2b,gemma-2b-it,qwen2.5-3b,qwen2.5-3b-instruct,mistral-7b-v0.3,mistral-7b-instruct-v0.3}"
+export TASKS="${TASKS:-dat,cdat,aut}"
+export METHODS="${METHODS:-one_shot,best_of_k_one_shot,restlessness_best}"
+export TEMPERATURES="${TEMPERATURES:-0.2,0.7,1.0,1.3}"
+export SEEDS="${SEEDS:-11,37,73,101,149}"
+export TOP_P="${TOP_P:-0.9}"
+export MAX_TOKENS="${MAX_TOKENS:-512}"
+export QUANTIZATION="${QUANTIZATION:-q4_k_m}"
+export RESTLESSNESS_K="${RESTLESSNESS_K:-3}"
+export BEST_OF_K="${BEST_OF_K:-4}"
+export LIMIT_CUES="${LIMIT_CUES:-120}"
+export LIMIT_AUT="${LIMIT_AUT:-90}"
+export N_GPU_LAYERS="${N_GPU_LAYERS:--1}"
+export STRICT_JSON="${STRICT_JSON:-true}"
+export MAX_RETRIES="${MAX_RETRIES:-2}"
+export PROMPT_MODE="${PROMPT_MODE:-completion}"
+export STOP="${STOP:-}"
+export N_CTX="${N_CTX:-4096}"
+export N_THREADS="${N_THREADS:-0}"
+export N_BATCH="${N_BATCH:-512}"
+
+"$(dirname "$0")/run_phase1_local.sh" "$RUNS_DIR" "$SCORES_DIR" "$ANALYSIS_DIR"
