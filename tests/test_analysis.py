@@ -7,6 +7,7 @@ from creativeai.analysis import (
     frontier_points,
     homogeneity_audit_from_runs,
     paired_method_deltas,
+    sampler_profile_analysis,
 )
 from creativeai.scoring import bootstrap_mean_ci
 
@@ -155,6 +156,34 @@ class AnalysisTest(unittest.TestCase):
         by_task = homogeneity_audit_from_runs(runs, by_task=True)
         self.assertGreater(len(by_task), len(pooled))
         self.assertTrue(all("task_id" in row for row in by_task))
+
+    def test_sampler_profile_analysis_pairs_against_baseline(self) -> None:
+        rows = [
+            {
+                "model_id": "m",
+                "method": "one_shot",
+                "task_id": "cdat",
+                "novelty": 0.40,
+                "appropriateness": 0.60,
+                "valid_for_primary": True,
+                "validity_flags": {"json_valid": True},
+                "metadata": {"cue": "forest", "seed": 11, "sampler_profile": "default_nucleus", "json_valid": True},
+            },
+            {
+                "model_id": "m",
+                "method": "one_shot",
+                "task_id": "cdat",
+                "novelty": 0.50,
+                "appropriateness": 0.62,
+                "valid_for_primary": True,
+                "validity_flags": {"json_valid": True},
+                "metadata": {"cue": "forest", "seed": 11, "sampler_profile": "spread_topk_minp", "json_valid": True},
+            },
+        ]
+        out = sampler_profile_analysis(rows, baseline_profile="default_nucleus")
+        self.assertEqual(len(out["sampler_summary"]), 2)
+        self.assertEqual(out["paired_deltas_vs_baseline"][0]["n_pairs"], 1)
+        self.assertGreater(out["paired_deltas_vs_baseline"][0]["objective_delta_mean"], 0)
 
 
 if __name__ == "__main__":

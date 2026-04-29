@@ -240,6 +240,105 @@ class CLIPipelineTest(unittest.TestCase):
             self.assertEqual(rc, 0)
             self.assertEqual(call_count["n"], 4)
 
+    def test_generate_grid_expands_sampler_profiles_and_writes_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            runs_dir = root / "runs"
+            profiles: list[str] = []
+
+            class FakeRecord:
+                def __init__(self) -> None:
+                    self.json_valid = True
+                    self.validity_flags = {"valid": True, "json_valid": True, "problems": []}
+                    self.tokens_total = 10
+
+            def fake_generate_run(*args, **kwargs):  # type: ignore[no-untyped-def]
+                profiles.append(args[3].sampler_profile)
+                return FakeRecord()
+
+            argv = [
+                "generate-grid",
+                "--tasks",
+                "dat",
+                "--methods",
+                "one_shot",
+                "--models",
+                "gemma-2-2b",
+                "--backend",
+                "mock",
+                "--temperatures",
+                "0.7",
+                "--sampler-profiles",
+                "low_temp,high_temp",
+                "--seeds",
+                "11",
+                "--dat-repeats",
+                "1",
+                "--health-min-samples",
+                "100",
+                "--output-dir",
+                str(runs_dir),
+            ]
+            with patch("creativeai.cli.generate_run", side_effect=fake_generate_run):
+                rc = self._run_cli(argv)
+            self.assertEqual(rc, 0)
+            self.assertEqual(profiles, ["low_temp", "high_temp"])
+            with (runs_dir / "experiment_manifest.json").open("r", encoding="utf-8") as f:
+                manifest = json.load(f)
+            self.assertEqual(manifest["grid"]["sampler_profiles"], ["low_temp", "high_temp"])
+
+    def test_analyze_samplers_command_writes_report(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            scores_path = root / "scores.jsonl"
+            rows = [
+                {
+                    "run_id": "r1",
+                    "session_id": "sess-a",
+                    "model_id": "m",
+                    "method": "one_shot",
+                    "task_id": "cdat",
+                    "novelty": 0.4,
+                    "appropriateness": 0.6,
+                    "usefulness": 0.0,
+                    "valid_for_primary": True,
+                    "validity_flags": {"json_valid": True},
+                    "metadata": {"session_id": "sess-a", "cue": "forest", "seed": 11, "sampler_profile": "default_nucleus", "json_valid": True},
+                },
+                {
+                    "run_id": "r2",
+                    "session_id": "sess-a",
+                    "model_id": "m",
+                    "method": "one_shot",
+                    "task_id": "cdat",
+                    "novelty": 0.5,
+                    "appropriateness": 0.6,
+                    "usefulness": 0.0,
+                    "valid_for_primary": True,
+                    "validity_flags": {"json_valid": True},
+                    "metadata": {"session_id": "sess-a", "cue": "forest", "seed": 11, "sampler_profile": "high_temp", "json_valid": True},
+                },
+            ]
+            with scores_path.open("w", encoding="utf-8") as f:
+                for row in rows:
+                    f.write(json.dumps(row) + "\n")
+
+            out_dir = root / "analysis"
+            rc = self._run_cli(
+                [
+                    "analyze-samplers",
+                    "--scores",
+                    str(scores_path),
+                    "--baseline-profile",
+                    "default_nucleus",
+                    "--output-dir",
+                    str(out_dir),
+                ]
+            )
+            self.assertEqual(rc, 0)
+            self.assertTrue((out_dir / "sampler_analysis.json").exists())
+            self.assertTrue((out_dir / "SAMPLER_ANALYSIS_REPORT.md").exists())
+
 
 if __name__ == "__main__":
     unittest.main()
