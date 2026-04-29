@@ -1,0 +1,3104 @@
+{
+  "frontier_points": [
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_group": "cdat",
+      "novelty_mean": 0.6219117722371408,
+      "appropriateness_mean": 0.6546988800071643,
+      "ci_low": 0.6270530622425218,
+      "ci_high": 0.6427149028100578
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_group": "aut",
+      "novelty_mean": 0.5398645773458973,
+      "appropriateness_mean": 0.7230051822636399,
+      "ci_low": 0.6060081733213156,
+      "ci_high": 0.6289424125610769
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_group": "cdat",
+      "novelty_mean": 0.6190598286830725,
+      "appropriateness_mean": 0.6638691424145249,
+      "ci_low": 0.6317634448206101,
+      "ci_high": 0.6451016203446046
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_group": "aut",
+      "novelty_mean": 0.5091519061613974,
+      "appropriateness_mean": 0.7469349889473519,
+      "ci_low": 0.5960463914295342,
+      "ci_high": 0.6248482817438
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_group": "cdat",
+      "novelty_mean": 0.6645203976467424,
+      "appropriateness_mean": 0.640866562157721,
+      "ci_low": 0.6456025041805094,
+      "ci_high": 0.6562275446672249
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_group": "aut",
+      "novelty_mean": 0.5315328718481792,
+      "appropriateness_mean": 0.7727607343380167,
+      "ci_low": 0.6248728152992552,
+      "ci_high": 0.6482160541721995
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_group": "cdat",
+      "novelty_mean": 0.6333786005069371,
+      "appropriateness_mean": 0.6525419095967897,
+      "ci_low": 0.6355933947046429,
+      "ci_high": 0.6459869619838542
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_group": "aut",
+      "novelty_mean": 0.5695240897334276,
+      "appropriateness_mean": 0.7094021215416408,
+      "ci_low": 0.6185049959672381,
+      "ci_high": 0.6364268654924468
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_group": "cdat",
+      "novelty_mean": 0.7012344169730197,
+      "appropriateness_mean": 0.5942808281064194,
+      "ci_low": 0.6380355853675262,
+      "ci_high": 0.6497719693276935
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_group": "aut",
+      "novelty_mean": 0.6127683288597698,
+      "appropriateness_mean": 0.7135749605540592,
+      "ci_low": 0.6467557970823254,
+      "ci_high": 0.6659884963386115
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_group": "cdat",
+      "novelty_mean": 0.6988298343675283,
+      "appropriateness_mean": 0.6074694181803861,
+      "ci_low": 0.6457895905149913,
+      "ci_high": 0.6543269128487181
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_group": "aut",
+      "novelty_mean": 0.5844359982008764,
+      "appropriateness_mean": 0.7279413907004164,
+      "ci_low": 0.6375876092275535,
+      "ci_high": 0.6593605710154367
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_group": "cdat",
+      "novelty_mean": 0.7250941456540342,
+      "appropriateness_mean": 0.6025802629465961,
+      "ci_low": 0.6568380068313925,
+      "ci_high": 0.6632786141797564
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_group": "aut",
+      "novelty_mean": 0.6622201167664724,
+      "appropriateness_mean": 0.7016160333291993,
+      "ci_low": 0.670087511263126,
+      "ci_high": 0.6828777265341851
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_group": "cdat",
+      "novelty_mean": 0.7003422779051819,
+      "appropriateness_mean": 0.6012573270851318,
+      "ci_low": 0.642767372899045,
+      "ci_high": 0.6525284017437853
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_group": "aut",
+      "novelty_mean": 0.6280870887358467,
+      "appropriateness_mean": 0.7093963863397883,
+      "ci_low": 0.6549413764305582,
+      "ci_high": 0.6694490618522769
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_group": "cdat",
+      "novelty_mean": 0.5536060388238084,
+      "appropriateness_mean": 0.5680525647508327,
+      "ci_low": 0.5184398747248836,
+      "ci_high": 0.5778404279022852
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_group": "aut",
+      "novelty_mean": 0.42944948541540096,
+      "appropriateness_mean": 0.5365076600293647,
+      "ci_low": 0.46002214148085757,
+      "ci_high": 0.4961539754825967
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_group": "cdat",
+      "novelty_mean": 0.6104574242594086,
+      "appropriateness_mean": 0.5381753983585588,
+      "ci_low": 0.5383819959318781,
+      "ci_high": 0.5894576512452973
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_group": "aut",
+      "novelty_mean": 0.40547719296711854,
+      "appropriateness_mean": 0.5210961236390897,
+      "ci_low": 0.44715006789766654,
+      "ci_high": 0.469134448224676
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_group": "cdat",
+      "novelty_mean": 0.702560893307184,
+      "appropriateness_mean": 0.556053514539238,
+      "ci_low": 0.6182229768421221,
+      "ci_high": 0.629418306203926
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_group": "aut",
+      "novelty_mean": 0.43024585774471885,
+      "appropriateness_mean": 0.6081124565787845,
+      "ci_low": 0.47513000697726515,
+      "ci_high": 0.5280214870898611
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_group": "cdat",
+      "novelty_mean": 0.6883092009900764,
+      "appropriateness_mean": 0.5465022345496662,
+      "ci_low": 0.5986179366693903,
+      "ci_high": 0.6231742472955704
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_group": "aut",
+      "novelty_mean": 0.4182582899599637,
+      "appropriateness_mean": 0.5775581068418881,
+      "ci_low": 0.4626794036035518,
+      "ci_high": 0.5056613558773969
+    }
+  ],
+  "frontier_summary": [
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.6219117722371408,
+      "appropriateness_mean": 0.6546988800071643,
+      "objective_mean": 0.6354801484976199,
+      "objective_ci_low": 0.6270530622425218,
+      "objective_ci_high": 0.6427149028100578
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "sample_count": 32,
+      "novelty_mean": 0.5398645773458973,
+      "appropriateness_mean": 0.7230051822636399,
+      "objective_mean": 0.6175417945892983,
+      "objective_ci_low": 0.6060081733213156,
+      "objective_ci_high": 0.6289424125610769
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.6190598286830725,
+      "appropriateness_mean": 0.6638691424145249,
+      "objective_mean": 0.6386378722667256,
+      "objective_ci_low": 0.6317634448206101,
+      "objective_ci_high": 0.6451016203446046
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "sample_count": 31,
+      "novelty_mean": 0.5091519061613974,
+      "appropriateness_mean": 0.7469349889473519,
+      "objective_mean": 0.6105446434450533,
+      "objective_ci_low": 0.5960463914295342,
+      "objective_ci_high": 0.6248482817438
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.6645203976467424,
+      "appropriateness_mean": 0.640866562157721,
+      "objective_mean": 0.6512735929037057,
+      "objective_ci_low": 0.6456025041805094,
+      "objective_ci_high": 0.6562275446672249
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "sample_count": 32,
+      "novelty_mean": 0.5315328718481792,
+      "appropriateness_mean": 0.7727607343380167,
+      "objective_mean": 0.6372570837003168,
+      "objective_ci_low": 0.6248728152992552,
+      "objective_ci_high": 0.6482160541721995
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.6333786005069371,
+      "appropriateness_mean": 0.6525419095967897,
+      "objective_mean": 0.6410063103100594,
+      "objective_ci_low": 0.6355933947046429,
+      "objective_ci_high": 0.6459869619838542
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "sample_count": 32,
+      "novelty_mean": 0.5695240897334276,
+      "appropriateness_mean": 0.7094021215416408,
+      "objective_mean": 0.6277971976622017,
+      "objective_ci_low": 0.6185049959672381,
+      "objective_ci_high": 0.6364268654924468
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.7012344169730197,
+      "appropriateness_mean": 0.5942808281064194,
+      "objective_mean": 0.644108907901237,
+      "objective_ci_low": 0.6380355853675262,
+      "objective_ci_high": 0.6497719693276935
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "aut",
+      "sample_count": 32,
+      "novelty_mean": 0.6127683288597698,
+      "appropriateness_mean": 0.7135749605540592,
+      "objective_mean": 0.6568305132800762,
+      "objective_ci_low": 0.6467557970823254,
+      "objective_ci_high": 0.6659884963386115
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.6988298343675283,
+      "appropriateness_mean": 0.6074694181803861,
+      "objective_mean": 0.650163479871097,
+      "objective_ci_low": 0.6457895905149913,
+      "objective_ci_high": 0.6543269128487181
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "sample_count": 32,
+      "novelty_mean": 0.5844359982008764,
+      "appropriateness_mean": 0.7279413907004164,
+      "objective_mean": 0.6484849454058185,
+      "objective_ci_low": 0.6375876092275535,
+      "objective_ci_high": 0.6593605710154367
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.7250941456540342,
+      "appropriateness_mean": 0.6025802629465961,
+      "objective_mean": 0.6600269355766766,
+      "objective_ci_low": 0.6568380068313925,
+      "objective_ci_high": 0.6632786141797564
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "sample_count": 32,
+      "novelty_mean": 0.6622201167664724,
+      "appropriateness_mean": 0.7016160333291993,
+      "objective_mean": 0.6765809446230074,
+      "objective_ci_low": 0.670087511263126,
+      "objective_ci_high": 0.6828777265341851
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.7003422779051819,
+      "appropriateness_mean": 0.6012573270851318,
+      "objective_mean": 0.6475602358545646,
+      "objective_ci_low": 0.642767372899045,
+      "objective_ci_high": 0.6525284017437853
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "sample_count": 32,
+      "novelty_mean": 0.6280870887358467,
+      "appropriateness_mean": 0.7093963863397883,
+      "objective_mean": 0.6625472248962087,
+      "objective_ci_low": 0.6549413764305582,
+      "objective_ci_high": 0.6694490618522769
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "sample_count": 30,
+      "novelty_mean": 0.5536060388238084,
+      "appropriateness_mean": 0.5680525647508327,
+      "objective_mean": 0.546372184075149,
+      "objective_ci_low": 0.5184398747248836,
+      "objective_ci_high": 0.5778404279022852
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "sample_count": 30,
+      "novelty_mean": 0.42944948541540096,
+      "appropriateness_mean": 0.5365076600293647,
+      "objective_mean": 0.4772308356815704,
+      "objective_ci_low": 0.46002214148085757,
+      "objective_ci_high": 0.4961539754825967
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.6104574242594086,
+      "appropriateness_mean": 0.5381753983585588,
+      "objective_mean": 0.5657799082824201,
+      "objective_ci_low": 0.5383819959318781,
+      "objective_ci_high": 0.5894576512452973
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "sample_count": 31,
+      "novelty_mean": 0.40547719296711854,
+      "appropriateness_mean": 0.5210961236390897,
+      "objective_mean": 0.4581455323912843,
+      "objective_ci_low": 0.44715006789766654,
+      "objective_ci_high": 0.469134448224676
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "sample_count": 32,
+      "novelty_mean": 0.702560893307184,
+      "appropriateness_mean": 0.556053514539238,
+      "objective_mean": 0.6234119368825901,
+      "objective_ci_low": 0.6182229768421221,
+      "objective_ci_high": 0.629418306203926
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "sample_count": 30,
+      "novelty_mean": 0.43024585774471885,
+      "appropriateness_mean": 0.6081124565787845,
+      "objective_mean": 0.5012757656966011,
+      "objective_ci_low": 0.47513000697726515,
+      "objective_ci_high": 0.5280214870898611
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "sample_count": 31,
+      "novelty_mean": 0.6883092009900764,
+      "appropriateness_mean": 0.5465022345496662,
+      "objective_mean": 0.6118085249831691,
+      "objective_ci_low": 0.5986179366693903,
+      "objective_ci_high": 0.6231742472955704
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "sample_count": 30,
+      "novelty_mean": 0.4182582899599637,
+      "appropriateness_mean": 0.5775581068418881,
+      "objective_mean": 0.4839594514338321,
+      "objective_ci_low": 0.4626794036035518,
+      "objective_ci_high": 0.5056613558773969
+    }
+  ],
+  "base_vs_instruct_shift": [
+    {
+      "family": "qwen2.5-3b",
+      "task_id": "cdat",
+      "base_mean_objective": 0.6415994809945277,
+      "instruct_mean_objective": 0.6504648898008938,
+      "delta_instruct_minus_base": 0.008865408806366104
+    },
+    {
+      "family": "qwen2.5-3b",
+      "task_id": "aut",
+      "base_mean_objective": 0.6233854990335023,
+      "instruct_mean_objective": 0.6611109070512777,
+      "delta_instruct_minus_base": 0.037725408017775464
+    }
+  ],
+  "best_of_n": [
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6666771674954687
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6666771674954687
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6666771674954687
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.5722550793952521
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6845360021952378
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6845360021952378
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6845360021952378
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.36927093847349307
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6767810287517735
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.38398923617121905
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.19688175381869774
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.09664848679068526
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.478783283850529
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.261431616793996
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.134571051548611
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.04553035066041278
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.35152804707605606
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.2313000514706244
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.139975379985582
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.08080321010504211
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6179289437069309
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.28951235400329967
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.10275801615089185
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.05734288129796209
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6673447801151277
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6558671057642532
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.4720387480920443
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.3730788428316577
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6845360021952378
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6845360021952378
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.5416704270585463
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.31346811777686906
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6733649694666193
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6733649694666193
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6733649694666193
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6733649694666193
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6918190226661788
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6918190226661788
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6918190226661788
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.3765001483897572
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6692989799123025
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.5301378058711307
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.2941973538076055
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.13473557723448465
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.7220631121093525
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.38742487571259693
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.11858971252052596
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.05624639626947245
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6515282448961851
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.38518312845885183
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.18949826396596445
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.0909540854698378
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.5907634932702103
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.2893164130286348
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.14009156663678365
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.07477622032370712
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6733649694666193
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6733649694666193
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.5576521486265998
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.34664863293004855
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.474241889583819
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.40254225184976433
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.3050361090121782
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.21961162129588477
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.6357600053940853
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.44575635785737794
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.2846155592139162
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.1850829710026449
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.608013676447142
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.608013676447142
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.608013676447142
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.5333453302167912
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.40671295348244907
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.27534010945848664
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.12655509816337313
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.06506586235374028
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.4703695849831432
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.3037605602685753
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.12977112543119512
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.06385679954683385
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.5374902720105236
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.21360959621216294
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.09599083647932916
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.04724241470871601
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.4042040490276114
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.1698926474028517
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.082226502858463
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.03632840563526007
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.609818549038529
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.3218486786592236
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.17405541379180955
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.0740569882330346
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 1,
+      "token_budget": 800,
+      "estimated_best_objective": 0.49803006236702757
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 2,
+      "token_budget": 800,
+      "estimated_best_objective": 0.2629207309600492
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 4,
+      "token_budget": 800,
+      "estimated_best_objective": 0.13636060436490618
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 8,
+      "token_budget": 800,
+      "estimated_best_objective": 0.06535844391731814
+    }
+  ],
+  "paired_deltas": {
+    "method_a": "restlessness_best",
+    "method_b": "one_shot",
+    "paired_by": "prompt",
+    "n_pairs": 188,
+    "mean_delta": 0.02827176674648559,
+    "ci_low": 0.021586831198678654,
+    "ci_high": 0.035772195671031036,
+    "wins": 111,
+    "task_summary": [
+      {
+        "task_id": "aut",
+        "n": 94,
+        "mean_delta": 0.021109052712524598,
+        "ci_low": 0.012157792432397107,
+        "ci_high": 0.031221041790904108,
+        "wins": 48
+      },
+      {
+        "task_id": "cdat",
+        "n": 94,
+        "mean_delta": 0.03543448078044659,
+        "ci_low": 0.02472106766925146,
+        "ci_high": 0.04819831177414224,
+        "wins": 63
+      }
+    ],
+    "pairs": [
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'forest'), ('compute_group', 'qwen2.5-3b|cdat|cue=forest|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6666771674954687,
+        "b_objective": 0.6666771674954687
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'river'), ('compute_group', 'qwen2.5-3b|cdat|cue=river|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.022291460510252437,
+        "a_objective": 0.6586325916137744,
+        "b_objective": 0.636341131103522
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'volcano'), ('compute_group', 'qwen2.5-3b|cdat|cue=volcano|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.010997876165524056,
+        "a_objective": 0.6642091794306503,
+        "b_objective": 0.6532113032651262
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'desert'), ('compute_group', 'qwen2.5-3b|cdat|cue=desert|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.008276378140490537,
+        "a_objective": 0.6613643291375344,
+        "b_objective": 0.6530879509970439
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'coral'), ('compute_group', 'qwen2.5-3b|cdat|cue=coral|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6556487267232619,
+        "b_objective": 0.6556487267232619
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'mountain'), ('compute_group', 'qwen2.5-3b|cdat|cue=mountain|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": -0.0037246567716009427,
+        "a_objective": 0.6387834275623984,
+        "b_objective": 0.6425080843339993
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'rain'), ('compute_group', 'qwen2.5-3b|cdat|cue=rain|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6341089069094946,
+        "b_objective": 0.6341089069094946
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'thunder'), ('compute_group', 'qwen2.5-3b|cdat|cue=thunder|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.012590451481117815,
+        "a_objective": 0.6476781831675239,
+        "b_objective": 0.6350877316864061
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=during a power outage|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.03736367326971446,
+        "a_objective": 0.6111959051446484,
+        "b_objective": 0.5738322318749339
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=in a classroom with limited supplies|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6409366948016776,
+        "b_objective": 0.6409366948016776
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=during emergency flood response|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.023525295118252965,
+        "a_objective": 0.6121621084711127,
+        "b_objective": 0.5886368133528598
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=during a power outage|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.005284581541643574,
+        "a_objective": 0.6425082686831324,
+        "b_objective": 0.6372236871414888
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=in a classroom with limited supplies|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.03319729881594491,
+        "a_objective": 0.6696626358490176,
+        "b_objective": 0.6364653370330727
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=during emergency flood response|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6356320337978374,
+        "b_objective": 0.6356320337978374
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=plastic bottle|context=during a power outage|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6845360021952378,
+        "b_objective": 0.6845360021952378
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.030629958611951946,
+        "a_objective": 0.6621197973781175,
+        "b_objective": 0.6314898387661656
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'forest'), ('compute_group', 'qwen2.5-3b|cdat|cue=forest|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.06565765506112331,
+        "a_objective": 0.6458269036783533,
+        "b_objective": 0.58016924861723
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'river'), ('compute_group', 'qwen2.5-3b|cdat|cue=river|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.038211420681510844,
+        "a_objective": 0.6673447801151277,
+        "b_objective": 0.6291333594336168
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'volcano'), ('compute_group', 'qwen2.5-3b|cdat|cue=volcano|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6037377816347379,
+        "b_objective": 0.6037377816347379
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'desert'), ('compute_group', 'qwen2.5-3b|cdat|cue=desert|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.007270069678163571,
+        "a_objective": 0.6245130192240446,
+        "b_objective": 0.617242949545881
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'coral'), ('compute_group', 'qwen2.5-3b|cdat|cue=coral|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.01605747596235929,
+        "a_objective": 0.653317859707622,
+        "b_objective": 0.6372603837452627
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'mountain'), ('compute_group', 'qwen2.5-3b|cdat|cue=mountain|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.03445313277085438,
+        "a_objective": 0.6536817813237055,
+        "b_objective": 0.6192286485528511
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'rain'), ('compute_group', 'qwen2.5-3b|cdat|cue=rain|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.017052117062508754,
+        "a_objective": 0.6541304355607672,
+        "b_objective": 0.6370783184982585
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'thunder'), ('compute_group', 'qwen2.5-3b|cdat|cue=thunder|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": -0.0037162253175730964,
+        "a_objective": 0.622713722682396,
+        "b_objective": 0.6264299479999691
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=during a power outage|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": -0.008712026919284077,
+        "a_objective": 0.6452184957440973,
+        "b_objective": 0.6539305226633814
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=in a classroom with limited supplies|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.019059386624373786,
+        "a_objective": 0.6522791415391431,
+        "b_objective": 0.6332197549147693
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=during emergency flood response|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.0032059062605760413,
+        "a_objective": 0.5784077670552066,
+        "b_objective": 0.5752018607946305
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=during a power outage|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.5991816296260705,
+        "b_objective": 0.5991816296260705
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=in a classroom with limited supplies|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6433986926844408,
+        "b_objective": 0.6433986926844408
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=during emergency flood response|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.10868582907329072,
+        "a_objective": 0.6684707148713279,
+        "b_objective": 0.5597848857980372
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=plastic bottle|context=during a power outage|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.018266094438762814,
+        "a_objective": 0.5755542999753175,
+        "b_objective": 0.5572882055365547
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.012583459230917415,
+        "a_objective": 0.6465573913939369,
+        "b_objective": 0.6339739321630194
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'forest'), ('compute_group', 'qwen2.5-3b|cdat|cue=forest|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.01831791162516594,
+        "a_objective": 0.6755680592835861,
+        "b_objective": 0.6572501476584202
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'river'), ('compute_group', 'qwen2.5-3b|cdat|cue=river|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.0066740701883392095,
+        "a_objective": 0.6652226794274383,
+        "b_objective": 0.6585486092390991
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'volcano'), ('compute_group', 'qwen2.5-3b|cdat|cue=volcano|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.10895211901292434,
+        "a_objective": 0.677130900680253,
+        "b_objective": 0.5681787816673286
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'desert'), ('compute_group', 'qwen2.5-3b|cdat|cue=desert|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.005331379424830085,
+        "a_objective": 0.6636659532611927,
+        "b_objective": 0.6583345738363626
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'coral'), ('compute_group', 'qwen2.5-3b|cdat|cue=coral|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": -0.0031324244884829433,
+        "a_objective": 0.641974852986444,
+        "b_objective": 0.6451072774749269
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'mountain'), ('compute_group', 'qwen2.5-3b|cdat|cue=mountain|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6462671114123566,
+        "b_objective": 0.6462671114123566
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'rain'), ('compute_group', 'qwen2.5-3b|cdat|cue=rain|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": -0.0022914846361895558,
+        "a_objective": 0.6451621688592987,
+        "b_objective": 0.6474536534954882
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'thunder'), ('compute_group', 'qwen2.5-3b|cdat|cue=thunder|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.06340627943745558,
+        "a_objective": 0.660530098830698,
+        "b_objective": 0.5971238193932424
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=during a power outage|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": -0.02591431550015766,
+        "a_objective": 0.6162580444644827,
+        "b_objective": 0.6421723599646404
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=in a classroom with limited supplies|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.048654942211437846,
+        "a_objective": 0.6868939078399517,
+        "b_objective": 0.6382389656285139
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=during emergency flood response|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": -0.03103572919219444,
+        "a_objective": 0.5957548644322379,
+        "b_objective": 0.6267905936244323
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=during a power outage|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": -0.006233843132941619,
+        "a_objective": 0.6647402930563595,
+        "b_objective": 0.6709741361893011
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=in a classroom with limited supplies|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.03158751149206929,
+        "a_objective": 0.6712204813037347,
+        "b_objective": 0.6396329698116654
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=during emergency flood response|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": -0.022219304468122925,
+        "a_objective": 0.583843569467608,
+        "b_objective": 0.6060628739357309
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=plastic bottle|context=during a power outage|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": -0.014116570879479151,
+        "a_objective": 0.6206767458683154,
+        "b_objective": 0.6347933167477946
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.07852777891300777,
+        "a_objective": 0.6737296545300497,
+        "b_objective": 0.595201875617042
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'forest'), ('compute_group', 'qwen2.5-3b|cdat|cue=forest|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.023781785973720937,
+        "a_objective": 0.6595417913678062,
+        "b_objective": 0.6357600053940853
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'river'), ('compute_group', 'qwen2.5-3b|cdat|cue=river|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.00397970280889115,
+        "a_objective": 0.6542589104559191,
+        "b_objective": 0.650279207647028
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'volcano'), ('compute_group', 'qwen2.5-3b|cdat|cue=volcano|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.013414420617639644,
+        "a_objective": 0.6538598483113506,
+        "b_objective": 0.6404454276937109
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'desert'), ('compute_group', 'qwen2.5-3b|cdat|cue=desert|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.025426551978857126,
+        "a_objective": 0.662977944331974,
+        "b_objective": 0.6375513923531169
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'coral'), ('compute_group', 'qwen2.5-3b|cdat|cue=coral|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.016112753626863374,
+        "a_objective": 0.6533731373721261,
+        "b_objective": 0.6372603837452627
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'mountain'), ('compute_group', 'qwen2.5-3b|cdat|cue=mountain|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6598232366666036,
+        "b_objective": 0.6598232366666036
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'rain'), ('compute_group', 'qwen2.5-3b|cdat|cue=rain|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6465206035518011,
+        "b_objective": 0.6465206035518011
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'cdat', ('cdat', 'thunder'), ('compute_group', 'qwen2.5-3b|cdat|cue=thunder|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6225088801528734,
+        "b_objective": 0.6225088801528734
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=during a power outage|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.1257075735487203,
+        "a_objective": 0.6745705584254038,
+        "b_objective": 0.5488629848766835
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=in a classroom with limited supplies|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.043387052107912494,
+        "a_objective": 0.6897631834128615,
+        "b_objective": 0.646376131304949
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b|aut|object=brick|context=during emergency flood response|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6225570968644498,
+        "b_objective": 0.6225570968644498
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=during a power outage|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.06443438935083468,
+        "a_objective": 0.6263056179326759,
+        "b_objective": 0.5618712285818412
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=in a classroom with limited supplies|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.05201090956117105,
+        "a_objective": 0.6424089056322592,
+        "b_objective": 0.5903979960710881
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b|aut|object=paperclip|context=during emergency flood response|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": -0.05954829450205901,
+        "a_objective": 0.5437451158612625,
+        "b_objective": 0.6032934103633215
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'qwen2.5-3b|aut|object=plastic bottle|context=during a power outage|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.016171813233951338,
+        "a_objective": 0.654352836618703,
+        "b_objective": 0.6381810233847517
+      },
+      {
+        "pair_key": "('qwen2.5-3b', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b",
+        "task_id": "aut",
+        "delta_objective": 0.0463858827422976,
+        "a_objective": 0.6575842234894593,
+        "b_objective": 0.6111983407471617
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'forest'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=forest|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.024913516687913972,
+        "a_objective": 0.6606735220819993,
+        "b_objective": 0.6357600053940853
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'river'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=river|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.05084986297265803,
+        "a_objective": 0.6687356097823891,
+        "b_objective": 0.6178857468097311
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'volcano'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=volcano|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6464006343635446,
+        "b_objective": 0.6464006343635446
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'desert'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=desert|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.003265205582041575,
+        "a_objective": 0.6493248986068672,
+        "b_objective": 0.6460596930248256
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'coral'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=coral|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.020248559478600714,
+        "a_objective": 0.6784037849981528,
+        "b_objective": 0.6581552255195521
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'mountain'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=mountain|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.004653880376916497,
+        "a_objective": 0.6591598522351582,
+        "b_objective": 0.6545059718582417
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'rain'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=rain|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6583935671280446,
+        "b_objective": 0.6583935671280446
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'thunder'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=thunder|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.024550593754540273,
+        "a_objective": 0.6593225519717739,
+        "b_objective": 0.6347719582172336
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=during a power outage|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.023353768142292175,
+        "a_objective": 0.6927690539838202,
+        "b_objective": 0.669415285841528
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=in a classroom with limited supplies|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.022681408350802013,
+        "a_objective": 0.7044854657247258,
+        "b_objective": 0.6818040573739238
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=during emergency flood response|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6494918698344604,
+        "b_objective": 0.6494918698344604
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=during a power outage|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.022540249739661178,
+        "a_objective": 0.6947033244057799,
+        "b_objective": 0.6721630746661187
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=in a classroom with limited supplies|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.07793297659704379,
+        "a_objective": 0.6949346885328178,
+        "b_objective": 0.617001711935774
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=during emergency flood response|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6704709908194713,
+        "b_objective": 0.6704709908194713
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=plastic bottle|context=during a power outage|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": -0.006984319856234267,
+        "a_objective": 0.665319492674593,
+        "b_objective": 0.6723038125308273
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6737986715136722,
+        "b_objective": 0.6737986715136722
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'forest'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=forest|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6428320926524034,
+        "b_objective": 0.6428320926524034
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'river'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=river|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.04054590596655849,
+        "a_objective": 0.6584316527762896,
+        "b_objective": 0.6178857468097311
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'volcano'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=volcano|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.023169510064173005,
+        "a_objective": 0.6688270403141755,
+        "b_objective": 0.6456575302500025
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'desert'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=desert|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6695849058971054,
+        "b_objective": 0.6695849058971054
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'coral'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=coral|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.023915765670121214,
+        "a_objective": 0.6611761494153839,
+        "b_objective": 0.6372603837452627
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'mountain'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=mountain|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.005762433779544884,
+        "a_objective": 0.660351412736033,
+        "b_objective": 0.6545889789564882
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'rain'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=rain|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6631006053748605,
+        "b_objective": 0.6631006053748605
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'thunder'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=thunder|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.01408846299553268,
+        "a_objective": 0.6642358300778094,
+        "b_objective": 0.6501473670822767
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=during a power outage|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.026866812787293193,
+        "a_objective": 0.6869421812096632,
+        "b_objective": 0.66007536842237
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=in a classroom with limited supplies|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6894359489656826,
+        "b_objective": 0.6894359489656826
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=during emergency flood response|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": -0.011945924154634802,
+        "a_objective": 0.6304951887756033,
+        "b_objective": 0.6424411129302381
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=during a power outage|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0032192751313370183,
+        "a_objective": 0.654166659496854,
+        "b_objective": 0.650947384365517
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=in a classroom with limited supplies|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0651474858797031,
+        "a_objective": 0.6731795324173314,
+        "b_objective": 0.6080320465376283
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=during emergency flood response|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.05321323024236424,
+        "a_objective": 0.6415514060653397,
+        "b_objective": 0.5883381758229754
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=plastic bottle|context=during a power outage|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.677449284042019,
+        "b_objective": 0.677449284042019
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.03338166392529851,
+        "a_objective": 0.680726622175889,
+        "b_objective": 0.6473449582505905
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'forest'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=forest|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.015319797530367052,
+        "a_objective": 0.6553874877302714,
+        "b_objective": 0.6400676901999044
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'river'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=river|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.024447885349014098,
+        "a_objective": 0.6614488182749492,
+        "b_objective": 0.6370009329259351
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'volcano'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=volcano|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.0013911330275193645,
+        "a_objective": 0.6542171370821346,
+        "b_objective": 0.6528260040546152
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'desert'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=desert|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": -0.0031810690528364383,
+        "a_objective": 0.6501567173061684,
+        "b_objective": 0.6533377863590049
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'coral'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=coral|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.019914738056395542,
+        "a_objective": 0.6660147464031057,
+        "b_objective": 0.6461000083467101
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'mountain'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=mountain|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 6.280694689930755e-05,
+        "a_objective": 0.657811206311206,
+        "b_objective": 0.6577483993643067
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'rain'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=rain|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.018658869027498026,
+        "a_objective": 0.6531544264444816,
+        "b_objective": 0.6344955574169836
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'thunder'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=thunder|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.07386883597479976,
+        "a_objective": 0.677635947549161,
+        "b_objective": 0.6037671115743612
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=during a power outage|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.01394561758110302,
+        "a_objective": 0.6997789901200181,
+        "b_objective": 0.6858333725389151
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=in a classroom with limited supplies|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.06593025827018273,
+        "a_objective": 0.6989139847741533,
+        "b_objective": 0.6329837265039706
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=during emergency flood response|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.667717184411635,
+        "b_objective": 0.667717184411635
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=during a power outage|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.008950687063504659,
+        "a_objective": 0.6831225973093835,
+        "b_objective": 0.6741719102458789
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=in a classroom with limited supplies|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.021031237468062902,
+        "a_objective": 0.6918935502653719,
+        "b_objective": 0.670862312797309
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=during emergency flood response|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.08997608002422297,
+        "a_objective": 0.655152941377419,
+        "b_objective": 0.565176861353196
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=plastic bottle|context=during a power outage|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.013439078975214014,
+        "a_objective": 0.6985216718376802,
+        "b_objective": 0.6850825928624662
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6918190226661788,
+        "b_objective": 0.6918190226661788
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'forest'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=forest|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": -0.0020642566982761457,
+        "a_objective": 0.6395832648427151,
+        "b_objective": 0.6416475215409913
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'river'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=river|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.013373574099026175,
+        "a_objective": 0.6682369317122812,
+        "b_objective": 0.654863357613255
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'volcano'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=volcano|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.01813195320012906,
+        "a_objective": 0.6573522976057021,
+        "b_objective": 0.6392203444055731
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'desert'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=desert|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.015520698292173396,
+        "a_objective": 0.6545198851239461,
+        "b_objective": 0.6389991868317727
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'coral'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=coral|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.02315487445117348,
+        "a_objective": 0.6495012910074438,
+        "b_objective": 0.6263464165562703
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'mountain'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=mountain|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.666159961042717,
+        "b_objective": 0.666159961042717
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'rain'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=rain|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.054813348081582225,
+        "a_objective": 0.6673627401387582,
+        "b_objective": 0.612549392057176
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'cdat', ('cdat', 'thunder'), ('compute_group', 'qwen2.5-3b-instruct|cdat|cue=thunder|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6733649694666193,
+        "b_objective": 0.6733649694666193
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=during a power outage|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.000998750359676226,
+        "a_objective": 0.6580214371313535,
+        "b_objective": 0.6570226867716773
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=in a classroom with limited supplies|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.039446398211313904,
+        "a_objective": 0.7043093636591908,
+        "b_objective": 0.6648629654478769
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=brick|context=during emergency flood response|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6467756242662756,
+        "b_objective": 0.6467756242662756
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=during a power outage|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.017944585241890576,
+        "a_objective": 0.6752720732131163,
+        "b_objective": 0.6573274879712258
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=in a classroom with limited supplies|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.01828333447658026,
+        "a_objective": 0.67515660645437,
+        "b_objective": 0.6568732719777898
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=paperclip|context=during emergency flood response|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6643749724093014,
+        "b_objective": 0.6643749724093014
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=plastic bottle|context=during a power outage|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.6833285218943512,
+        "b_objective": 0.6833285218943512
+      },
+      {
+        "pair_key": "('qwen2.5-3b-instruct', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'qwen2.5-3b-instruct|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "qwen2.5-3b-instruct",
+        "task_id": "aut",
+        "delta_objective": 0.03266114851712021,
+        "a_objective": 0.6765113055087157,
+        "b_objective": 0.6438501569915955
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'forest'), ('compute_group', 'gemma-2b|cdat|cue=forest|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6357600053940853,
+        "b_objective": 0.6357600053940853
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'river'), ('compute_group', 'gemma-2b|cdat|cue=river|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.11964383493016412,
+        "a_objective": 0.6178857468097311,
+        "b_objective": 0.49824191187956696
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'volcano'), ('compute_group', 'gemma-2b|cdat|cue=volcano|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.10677314497104279,
+        "a_objective": 0.5933019924489507,
+        "b_objective": 0.48652884747790787
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'desert'), ('compute_group', 'gemma-2b|cdat|cue=desert|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.13640947567036288,
+        "a_objective": 0.6347055061596393,
+        "b_objective": 0.4982960304892764
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'coral'), ('compute_group', 'gemma-2b|cdat|cue=coral|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.2162990528494385,
+        "a_objective": 0.6372603837452627,
+        "b_objective": 0.4209613308958242
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'mountain'), ('compute_group', 'gemma-2b|cdat|cue=mountain|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": -0.00010631769024860294,
+        "a_objective": 0.6191223308626025,
+        "b_objective": 0.6192286485528511
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'rain'), ('compute_group', 'gemma-2b|cdat|cue=rain|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.039414522316647105,
+        "a_objective": 0.6519639143738231,
+        "b_objective": 0.612549392057176
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'thunder'), ('compute_group', 'gemma-2b|cdat|cue=thunder|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.622713722682396,
+        "b_objective": 0.622713722682396
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=brick|context=during a power outage|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.46008659001730773,
+        "b_objective": 0.46008659001730773
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'gemma-2b|aut|object=brick|context=during emergency flood response|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.5638555399985429,
+        "b_objective": 0.5638555399985429
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=during a power outage|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.4482912646704978,
+        "b_objective": 0.4482912646704978
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=in a classroom with limited supplies|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.46972994295190523,
+        "b_objective": 0.46972994295190523
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=during emergency flood response|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.45325445196347824,
+        "b_objective": 0.45325445196347824
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=plastic bottle|context=during a power outage|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.5765545053053768,
+        "b_objective": 0.5765545053053768
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=11|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": -0.07389438320546132,
+        "a_objective": 0.39003228263740514,
+        "b_objective": 0.46392666584286646
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'forest'), ('compute_group', 'gemma-2b|cdat|cue=forest|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6357600053940853,
+        "b_objective": 0.6357600053940853
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'river'), ('compute_group', 'gemma-2b|cdat|cue=river|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.11964383493016412,
+        "a_objective": 0.6178857468097311,
+        "b_objective": 0.49824191187956696
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'volcano'), ('compute_group', 'gemma-2b|cdat|cue=volcano|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.11493360303223127,
+        "a_objective": 0.6014624505101391,
+        "b_objective": 0.48652884747790787
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'desert'), ('compute_group', 'gemma-2b|cdat|cue=desert|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.12621698873476817,
+        "a_objective": 0.6245130192240446,
+        "b_objective": 0.4982960304892764
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'coral'), ('compute_group', 'gemma-2b|cdat|cue=coral|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.052441464912646674,
+        "a_objective": 0.6372603837452627,
+        "b_objective": 0.584818918832616
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'mountain'), ('compute_group', 'gemma-2b|cdat|cue=mountain|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.0552873297472698,
+        "a_objective": 0.6192286485528511,
+        "b_objective": 0.5639413188055813
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'rain'), ('compute_group', 'gemma-2b|cdat|cue=rain|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.612549392057176,
+        "b_objective": 0.612549392057176
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'thunder'), ('compute_group', 'gemma-2b|cdat|cue=thunder|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.622713722682396,
+        "b_objective": 0.622713722682396
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=brick|context=during a power outage|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": -0.03193975375757796,
+        "a_objective": 0.46008659001730773,
+        "b_objective": 0.4920263437748857
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=brick|context=in a classroom with limited supplies|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.4678248754795281,
+        "b_objective": 0.4678248754795281
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'gemma-2b|aut|object=brick|context=during emergency flood response|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.4128216137349671,
+        "b_objective": 0.4128216137349671
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=during a power outage|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.46012325792635067,
+        "b_objective": 0.46012325792635067
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=in a classroom with limited supplies|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.01762893233172136,
+        "a_objective": 0.4873588752836266,
+        "b_objective": 0.46972994295190523
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=during emergency flood response|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.21381446965046086,
+        "a_objective": 0.628344363573614,
+        "b_objective": 0.41452989392315315
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=plastic bottle|context=during a power outage|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.4551183626232708,
+        "b_objective": 0.4551183626232708
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=37|temp=0.7|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.07642729138729809,
+        "a_objective": 0.611779303735235,
+        "b_objective": 0.535352012347937
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'forest'), ('compute_group', 'gemma-2b|cdat|cue=forest|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.12669894200165766,
+        "a_objective": 0.6357600053940853,
+        "b_objective": 0.5090610633924276
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'river'), ('compute_group', 'gemma-2b|cdat|cue=river|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.13025001181395096,
+        "a_objective": 0.6178857468097311,
+        "b_objective": 0.4876357349957801
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'volcano'), ('compute_group', 'gemma-2b|cdat|cue=volcano|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.10677314497104279,
+        "a_objective": 0.5933019924489507,
+        "b_objective": 0.48652884747790787
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'desert'), ('compute_group', 'gemma-2b|cdat|cue=desert|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.022453967219464577,
+        "a_objective": 0.6516696450897745,
+        "b_objective": 0.62921567787031
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'coral'), ('compute_group', 'gemma-2b|cdat|cue=coral|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.24149542935714607,
+        "a_objective": 0.6624567602529703,
+        "b_objective": 0.4209613308958242
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'rain'), ('compute_group', 'gemma-2b|cdat|cue=rain|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.10884233629737006,
+        "a_objective": 0.612549392057176,
+        "b_objective": 0.5037070557598059
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=brick|context=during a power outage|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.46008659001730773,
+        "b_objective": 0.46008659001730773
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=brick|context=in a classroom with limited supplies|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.4678248754795281,
+        "b_objective": 0.4678248754795281
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'gemma-2b|aut|object=brick|context=during emergency flood response|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.608013676447142,
+        "b_objective": 0.608013676447142
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=in a classroom with limited supplies|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": -0.021476876870526074,
+        "a_objective": 0.44825306608137916,
+        "b_objective": 0.46972994295190523
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=during emergency flood response|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.1388197708119348,
+        "a_objective": 0.553349664735088,
+        "b_objective": 0.41452989392315315
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=plastic bottle|context=during a power outage|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.13636669392556172,
+        "a_objective": 0.5914850565488325,
+        "b_objective": 0.4551183626232708
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=11|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.1716842012530525,
+        "a_objective": 0.635610867095919,
+        "b_objective": 0.46392666584286646
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'forest'), ('compute_group', 'gemma-2b|cdat|cue=forest|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6357600053940853,
+        "b_objective": 0.6357600053940853
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'river'), ('compute_group', 'gemma-2b|cdat|cue=river|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.007050516339598856,
+        "a_objective": 0.6178857468097311,
+        "b_objective": 0.6108352304701322
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'volcano'), ('compute_group', 'gemma-2b|cdat|cue=volcano|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.23493550533194013,
+        "a_objective": 0.5933019924489507,
+        "b_objective": 0.3583664871170105
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'desert'), ('compute_group', 'gemma-2b|cdat|cue=desert|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": -0.001734672569782214,
+        "a_objective": 0.6245130192240446,
+        "b_objective": 0.6262476917938268
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'coral'), ('compute_group', 'gemma-2b|cdat|cue=coral|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.2441788016963573,
+        "a_objective": 0.6372603837452627,
+        "b_objective": 0.3930815820489054
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'mountain'), ('compute_group', 'gemma-2b|cdat|cue=mountain|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.6192286485528511,
+        "b_objective": 0.6192286485528511
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'rain'), ('compute_group', 'gemma-2b|cdat|cue=rain|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.0,
+        "a_objective": 0.612549392057176,
+        "b_objective": 0.612549392057176
+      },
+      {
+        "pair_key": "('gemma-2b', 'cdat', ('cdat', 'thunder'), ('compute_group', 'gemma-2b|cdat|cue=thunder|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "cdat",
+        "delta_objective": 0.008173169889934107,
+        "a_objective": 0.6090299072706711,
+        "b_objective": 0.600856737380737
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=brick|context=during a power outage|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.104605834263436,
+        "a_objective": 0.5646924242807437,
+        "b_objective": 0.46008659001730773
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=brick|context=in a classroom with limited supplies|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.5176114363090092,
+        "b_objective": 0.5176114363090092
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'brick', 'during emergency flood response'), ('compute_group', 'gemma-2b|aut|object=brick|context=during emergency flood response|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.04643095201432412,
+        "a_objective": 0.45925256574929124,
+        "b_objective": 0.4128216137349671
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=during a power outage|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.46012325792635067,
+        "b_objective": 0.46012325792635067
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=in a classroom with limited supplies|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": -0.043444334373539895,
+        "a_objective": 0.42628560857836534,
+        "b_objective": 0.46972994295190523
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'paperclip', 'during emergency flood response'), ('compute_group', 'gemma-2b|aut|object=paperclip|context=during emergency flood response|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": -0.01471147898447056,
+        "a_objective": 0.3998184149386826,
+        "b_objective": 0.41452989392315315
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'plastic bottle', 'during a power outage'), ('compute_group', 'gemma-2b|aut|object=plastic bottle|context=during a power outage|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.001036582004708686,
+        "a_objective": 0.5389333184120451,
+        "b_objective": 0.5378967364073364
+      },
+      {
+        "pair_key": "('gemma-2b', 'aut', ('aut', 'plastic bottle', 'in a classroom with limited supplies'), ('compute_group', 'gemma-2b|aut|object=plastic bottle|context=in a classroom with limited supplies|seed=37|temp=1.0|top_p=0.9|tag=method_search'))",
+        "model_id": "gemma-2b",
+        "task_id": "aut",
+        "delta_objective": 0.0,
+        "a_objective": 0.5616703283799354,
+        "b_objective": 0.5616703283799354
+      }
+    ]
+  },
+  "compute_matched": {
+    "k": 4,
+    "compute_matched_by": "prompt",
+    "token_tolerance": 0.3,
+    "primary_comparison": {
+      "method_a": "restlessness_best",
+      "method_b": "best_of_k_one_shot",
+      "paired_by": "prompt",
+      "n_pairs": 0,
+      "mean_delta": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0,
+      "wins": 0,
+      "task_summary": [],
+      "pairs": [],
+      "matched_pairs": 0,
+      "unmatched_pairs": 0,
+      "token_tolerance": 0.3
+    },
+    "adaptive_comparison": {
+      "method_a": "restlessness_adaptive",
+      "method_b": "best_of_k_one_shot",
+      "paired_by": "prompt",
+      "n_pairs": 0,
+      "mean_delta": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0,
+      "wins": 0,
+      "task_summary": [],
+      "pairs": [],
+      "matched_pairs": 0,
+      "unmatched_pairs": 0,
+      "token_tolerance": 0.3
+    },
+    "baseline_comparison": {
+      "method_a": "best_of_k_one_shot",
+      "method_b": "one_shot",
+      "paired_by": "prompt",
+      "n_pairs": 0,
+      "mean_delta": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0,
+      "wins": 0,
+      "task_summary": [],
+      "pairs": [],
+      "matched_pairs": 0,
+      "unmatched_pairs": 0,
+      "token_tolerance": 0.3
+    }
+  },
+  "efficiency_summary": [
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 31,
+      "objective_mean": 0.4581455323912843,
+      "tokens_mean": 844.0,
+      "calls_mean": 6.290322580645161,
+      "score_per_1k_tokens_mean": 0.575261068460443
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.5657799082824201,
+      "tokens_mean": 840.96875,
+      "calls_mean": 6.46875,
+      "score_per_1k_tokens_mean": 0.7372963416796382
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 30,
+      "objective_mean": 0.4772308356815704,
+      "tokens_mean": 372.4,
+      "calls_mean": 2.7666666666666666,
+      "score_per_1k_tokens_mean": 2.6416968695444845
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 30,
+      "objective_mean": 0.546372184075149,
+      "tokens_mean": 307.26666666666665,
+      "calls_mean": 2.4,
+      "score_per_1k_tokens_mean": 2.682124249790588
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 30,
+      "objective_mean": 0.5012757656966011,
+      "tokens_mean": 1825.1666666666667,
+      "calls_mean": 9.1,
+      "score_per_1k_tokens_mean": 0.289031266860997
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.6234119368825901,
+      "tokens_mean": 1595.40625,
+      "calls_mean": 8.75,
+      "score_per_1k_tokens_mean": 0.41897873991157353
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 30,
+      "objective_mean": 0.4839594514338321,
+      "tokens_mean": 978.5333333333333,
+      "calls_mean": 5.666666666666667,
+      "score_per_1k_tokens_mean": 0.5515674881751764
+    },
+    {
+      "model_id": "gemma-2b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 31,
+      "objective_mean": 0.6118085249831691,
+      "tokens_mean": 873.9354838709677,
+      "calls_mean": 5.483870967741935,
+      "score_per_1k_tokens_mean": 1.0337130996831916
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 31,
+      "objective_mean": 0.6105446434450533,
+      "tokens_mean": 1749.8064516129032,
+      "calls_mean": 5.064516129032258,
+      "score_per_1k_tokens_mean": 0.4652762252750052
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.6386378722667256,
+      "tokens_mean": 734.8125,
+      "calls_mean": 5.78125,
+      "score_per_1k_tokens_mean": 1.0088473414605708
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 32,
+      "objective_mean": 0.6175417945892983,
+      "tokens_mean": 198.46875,
+      "calls_mean": 1.09375,
+      "score_per_1k_tokens_mean": 3.7108893728384236
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.6354801484976199,
+      "tokens_mean": 209.53125,
+      "calls_mean": 1.8125,
+      "score_per_1k_tokens_mean": 5.6388991994516715
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 32,
+      "objective_mean": 0.6372570837003168,
+      "tokens_mean": 1263.875,
+      "calls_mean": 4.875,
+      "score_per_1k_tokens_mean": 0.5779657497814079
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.6512735929037057,
+      "tokens_mean": 1055.09375,
+      "calls_mean": 6.15625,
+      "score_per_1k_tokens_mean": 0.6871075019942207
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 32,
+      "objective_mean": 0.6277971976622017,
+      "tokens_mean": 290.40625,
+      "calls_mean": 1.5625,
+      "score_per_1k_tokens_mean": 3.1350228749058364
+    },
+    {
+      "model_id": "qwen2.5-3b",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.6410063103100594,
+      "tokens_mean": 283.34375,
+      "calls_mean": 2.28125,
+      "score_per_1k_tokens_mean": 4.807812909478562
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "aut",
+      "n": 32,
+      "objective_mean": 0.6484849454058185,
+      "tokens_mean": 1340.59375,
+      "calls_mean": 4.4375,
+      "score_per_1k_tokens_mean": 0.5462469175486451
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "naive_multiturn",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.650163479871097,
+      "tokens_mean": 487.1875,
+      "calls_mean": 4.4375,
+      "score_per_1k_tokens_mean": 1.4263553644007247
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "aut",
+      "n": 32,
+      "objective_mean": 0.6568305132800762,
+      "tokens_mean": 194.28125,
+      "calls_mean": 1.09375,
+      "score_per_1k_tokens_mean": 3.78224226074733
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "one_shot",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.644108907901237,
+      "tokens_mean": 100.90625,
+      "calls_mean": 1.15625,
+      "score_per_1k_tokens_mean": 7.692627482984519
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "aut",
+      "n": 32,
+      "objective_mean": 0.6765809446230074,
+      "tokens_mean": 932.28125,
+      "calls_mean": 4.125,
+      "score_per_1k_tokens_mean": 0.7426648389049899
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_best",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.6600269355766766,
+      "tokens_mean": 768.0,
+      "calls_mean": 4.8125,
+      "score_per_1k_tokens_mean": 0.9244338322572797
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "aut",
+      "n": 32,
+      "objective_mean": 0.6625472248962087,
+      "tokens_mean": 234.09375,
+      "calls_mean": 1.28125,
+      "score_per_1k_tokens_mean": 3.58364070500468
+    },
+    {
+      "model_id": "qwen2.5-3b-instruct",
+      "method": "restlessness_triggered",
+      "task_id": "cdat",
+      "n": 32,
+      "objective_mean": 0.6475602358545646,
+      "tokens_mean": 125.5625,
+      "calls_mean": 1.3125,
+      "score_per_1k_tokens_mean": 7.446209539540787
+    }
+  ],
+  "exclude_invalid": true,
+  "paired_by": "prompt",
+  "compute_matched_by": "prompt",
+  "compute_matched_token_tolerance": 0.3,
+  "session_id": "method-search-1772343897",
+  "plot": "outputs/phase3_main_20260301_004457/analysis/frontier.png"
+}

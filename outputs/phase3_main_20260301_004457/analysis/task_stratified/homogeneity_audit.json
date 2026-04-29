@@ -1,0 +1,76 @@
+{
+  "rows": [
+    {
+      "method": "one_shot",
+      "sample_count": 96,
+      "compactness": 0.6631113339690788,
+      "nearest_neighbor_similarity": 0.8678974334681574,
+      "self_bleu": 0.3931712962962963,
+      "diversity_index": 0.3392139344418097,
+      "task_id": "cdat"
+    },
+    {
+      "method": "one_shot",
+      "sample_count": 96,
+      "compactness": 0.594920029021373,
+      "nearest_neighbor_similarity": 0.8378739313214486,
+      "self_bleu": 0.568753517484278,
+      "diversity_index": 0.3049089939815762,
+      "task_id": "aut"
+    },
+    {
+      "method": "naive_multiturn",
+      "sample_count": 96,
+      "compactness": 0.6518291568256028,
+      "nearest_neighbor_similarity": 0.8518277229804719,
+      "self_bleu": 0.3458333333333334,
+      "diversity_index": 0.36527002662700037,
+      "task_id": "cdat"
+    },
+    {
+      "method": "naive_multiturn",
+      "sample_count": 96,
+      "compactness": 0.5998217524498818,
+      "nearest_neighbor_similarity": 0.8452696283103084,
+      "self_bleu": 0.618697241793898,
+      "diversity_index": 0.2831202821425206,
+      "task_id": "aut"
+    },
+    {
+      "method": "restlessness_best",
+      "sample_count": 96,
+      "compactness": 0.7259248248544989,
+      "nearest_neighbor_similarity": 0.8400950585376107,
+      "self_bleu": 0.33622685185185186,
+      "diversity_index": 0.3590928605390272,
+      "task_id": "cdat"
+    },
+    {
+      "method": "restlessness_best",
+      "sample_count": 96,
+      "compactness": 0.5956254330030614,
+      "nearest_neighbor_similarity": 0.8219706837685151,
+      "self_bleu": 0.501164808759709,
+      "diversity_index": 0.33558042263765775,
+      "task_id": "aut"
+    },
+    {
+      "method": "restlessness_triggered",
+      "sample_count": 96,
+      "compactness": 0.7391261903872745,
+      "nearest_neighbor_similarity": 0.8766801815666859,
+      "self_bleu": 0.4304398148148148,
+      "diversity_index": 0.30701474503235127,
+      "task_id": "cdat"
+    },
+    {
+      "method": "restlessness_triggered",
+      "sample_count": 96,
+      "compactness": 0.5951242257082298,
+      "nearest_neighbor_similarity": 0.8185866799387508,
+      "self_bleu": 0.5352359465246922,
+      "diversity_index": 0.325278567602274,
+      "task_id": "aut"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "status": "NO_GO",
+  "generated_at_utc": "2026-03-01T02:48:59.580797+00:00",
+  "baseline_method": "naive_multiturn",
+  "anchor_method": "restlessness_best",
+  "thresholds": {
+    "target_token_reduction": 0.5,
+    "quality_margin": -0.01,
+    "min_pairs": 16
+  },
+  "method_summary": [
+    {
+      "method": "naive_multiturn",
+      "n": 16,
+      "objective_mean": 0.6425512871517275,
+      "tokens_mean": 965.0625,
+      "calls_mean": 4.6875
+    },
+    {
+      "method": "one_shot",
+      "n": 16,
+      "objective_mean": 0.6393333976983784,
+      "tokens_mean": 196.375,
+      "calls_mean": 1.375
+    },
+    {
+      "method": "restlessness_adaptive",
+      "n": 16,
+      "objective_mean": 0.6614184246260397,
+      "tokens_mean": 538.4375,
+      "calls_mean": 3.3125
+    },
+    {
+      "method": "restlessness_best",
+      "n": 16,
+      "objective_mean": 0.662026075456829,
+      "tokens_mean": 1036.8125,
+      "calls_mean": 5.125
+    },
+    {
+      "method": "restlessness_triggered",
+      "n": 16,
+      "objective_mean": 0.6560169045171398,
+      "tokens_mean": 380.5625,
+      "calls_mean": 2.4375
+    }
+  ],
+  "candidate_results": [
+    {
+      "method": "restlessness_triggered",
+      "n_pairs_vs_baseline": 16,
+      "objective_delta_vs_baseline": {
+        "ci_low": 0.001349275493412752,
+        "mean": 0.013465617365412255,
+        "ci_high": 0.024697631376656308
+      },
+      "token_reduction_vs_baseline": {
+        "ci_low": 0.23774039174011222,
+        "mean": 0.4890411263891559,
+        "ci_high": 0.7135346489223383
+      },
+      "call_reduction_vs_baseline": {
+        "ci_low": 0.35104166666666664,
+        "mean": 0.5072916666666667,
+        "ci_high": 0.65625
+      },
+      "objective_delta_vs_anchor": {
+        "ci_low": -0.012643308450097326,
+        "mean": -0.006009170939689189,
+        "ci_high": 0.0004878320122968169
+      },
+      "passes_gate": false
+    },
+    {
+      "method": "restlessness_adaptive",
+      "n_pairs_vs_baseline": 16,
+      "objective_delta_vs_baseline": {
+        "ci_low": 0.0068835088408399706,
+        "mean": 0.01886713747431218,
+        "ci_high": 0.0301610659370129
+      },
+      "token_reduction_vs_baseline": {
+        "ci_low": 0.0689336415061822,
+        "mean": 0.28559293467859775,
+        "ci_high": 0.49024329423299084
+      },
+      "call_reduction_vs_baseline": {
+        "ci_low": 0.196875,
+        "mean": 0.30625,
+        "ci_high": 0.40625
+      },
+      "objective_delta_vs_anchor": {
+        "ci_low": -0.005555801474402378,
+        "mean": -0.000607650830789265,
+        "ci_high": 0.0042511230588194865
+      },
+      "passes_gate": false
+    },
+    {
+      "method": "restlessness_best",
+      "n_pairs_vs_baseline": 16,
+      "objective_delta_vs_baseline": {
+        "ci_low": 0.007491159671629236,
+        "mean": 0.019474788305101444,
+        "ci_high": 0.031127625201601603
+      },
+      "token_reduction_vs_baseline": {
+        "ci_low": -0.5218335079400211,
+        "mean": -0.27351489181380584,
+        "ci_high": -0.02786112983728846
+      },
+      "call_reduction_vs_baseline": {
+        "ci_low": -0.17604166666666665,
+        "mean": -0.08958333333333332,
+        "ci_high": -0.013541666666666667
+      },
+      "objective_delta_vs_anchor": {
+        "ci_low": 0.0,
+        "mean": 0.0,
+        "ci_high": 0.0
+      },
+      "passes_gate": false
+    }
+  ],
+  "recommended_method": null,
+  "next_action": "No candidate met gate; tune trigger threshold/iterations and rerun micro-lab."
+}

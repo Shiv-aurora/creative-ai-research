@@ -1,0 +1,70 @@
+{
+  "status": "GO",
+  "generated_at_utc": "2026-03-01T04:42:38.257159+00:00",
+  "baseline_method": "naive_multiturn",
+  "anchor_method": "restlessness_best",
+  "thresholds": {
+    "target_token_reduction": 0.5,
+    "quality_margin": -0.01,
+    "min_pairs": 40
+  },
+  "method_summary": [
+    {
+      "method": "naive_multiturn",
+      "n": 63,
+      "objective_mean": 0.6348510807310667,
+      "tokens_mean": 1117.3174603174602,
+      "calls_mean": 4.857142857142857
+    },
+    {
+      "method": "one_shot",
+      "n": 64,
+      "objective_mean": 0.6377373114159764,
+      "tokens_mean": 172.796875,
+      "calls_mean": 1.25
+    },
+    {
+      "method": "restlessness_best",
+      "n": 64,
+      "objective_mean": 0.6542041385347952,
+      "tokens_mean": 1052.859375,
+      "calls_mean": 5.09375
+    },
+    {
+      "method": "restlessness_triggered",
+      "n": 64,
+      "objective_mean": 0.6422548385277783,
+      "tokens_mean": 205.46875,
+      "calls_mean": 1.46875
+    }
+  ],
+  "candidate_results": [
+    {
+      "method": "restlessness_triggered",
+      "n_pairs_vs_baseline": 63,
+      "objective_delta_vs_baseline": {
+        "ci_low": 0.0014757934916755657,
+        "mean": 0.0075352007548823655,
+        "ci_high": 0.013807807972826406
+      },
+      "token_reduction_vs_baseline": {
+        "ci_low": 0.7219775378033018,
+        "mean": 0.7669754146220853,
+        "ci_high": 0.8123636342088105
+      },
+      "call_reduction_vs_baseline": {
+        "ci_low": 0.6629440665154951,
+        "mean": 0.6967498110355254,
+        "ci_high": 0.7294595616024188
+      },
+      "objective_delta_vs_anchor": {
+        "ci_low": -0.01678276759282743,
+        "mean": -0.011949300007016975,
+        "ci_high": -0.007925850329362242
+      },
+      "passes_gate": true
+    }
+  ],
+  "recommended_method": "restlessness_triggered",
+  "next_action": "Promote `restlessness_triggered` to next larger run with anchor `restlessness_best` retained."
+}
