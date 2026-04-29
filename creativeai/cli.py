@@ -18,11 +18,13 @@ from creativeai.analysis import (
     frontier_points,
     homogeneity_audit_from_runs,
     paired_method_deltas,
+    sampler_profile_analysis,
     save_frontier_plot,
 )
 from creativeai.calibration import evaluate_human_calibration, stratified_human_slice
 from creativeai.datasets import default_aut_prompts, default_cdat_cues
-from creativeai.io_utils import append_jsonl, infer_records, snapshot_tabular, write_json
+from creativeai.decoding import apply_sampler_profile, sampler_profile_names
+from creativeai.io_utils import append_jsonl, environment_snapshot, infer_records, snapshot_tabular, write_json
 from creativeai.methods import build_method_runner
 from creativeai.model_backend import create_model_adapter
 from creativeai.pipeline import generate_run, save_analysis_artifact, save_score_records
@@ -44,6 +46,11 @@ def _csv_ints(value: str) -> list[int]:
 
 def _csv_floats(value: str) -> list[float]:
     return [float(v.strip()) for v in value.split(",") if v.strip()]
+
+
+def _csv_sampler_profiles(value: str) -> list[str]:
+    profiles = [item.strip() for item in value.split(",") if item.strip()]
+    return profiles or ["manual"]
 
 
 def _format_seconds(seconds: float) -> str:
@@ -117,7 +124,7 @@ def _load_model_path_map(path: str | None) -> dict[str, str]:
 
 def _build_generation_config(args: argparse.Namespace, model_id: str, seed: int, temperature: float) -> GenerationConfig:
     stop_tokens = _csv_list(args.stop) if getattr(args, "stop", "") else []
-    return GenerationConfig(
+    cfg = GenerationConfig(
         model_id=model_id,
         backend=args.backend,
         temperature=temperature,
@@ -130,6 +137,16 @@ def _build_generation_config(args: argparse.Namespace, model_id: str, seed: int,
         prompt_mode=str(getattr(args, "prompt_mode", "auto")),
         grammar_mode=str(getattr(args, "grammar_mode", "auto")),
         stop=stop_tokens,
+        sampler_profile=str(getattr(args, "sampler_profile", "manual")),
+        top_k=max(0, int(getattr(args, "top_k", 0))),
+        min_p=max(0.0, float(getattr(args, "min_p", 0.0))),
+        typical_p=max(0.0, float(getattr(args, "typical_p", 0.0))),
+        repeat_penalty=max(0.0, float(getattr(args, "repeat_penalty", 1.0))),
+        frequency_penalty=float(getattr(args, "frequency_penalty", 0.0)),
+        presence_penalty=float(getattr(args, "presence_penalty", 0.0)),
+        mirostat_mode=max(0, int(getattr(args, "mirostat_mode", 0))),
+        mirostat_tau=max(0.0, float(getattr(args, "mirostat_tau", 0.0))),
+        mirostat_eta=max(0.0, float(getattr(args, "mirostat_eta", 0.0))),
         n_ctx=int(getattr(args, "n_ctx", 4096)),
         n_threads=int(getattr(args, "n_threads", 0)),
         n_batch=int(getattr(args, "n_batch", 512)),
@@ -151,6 +168,7 @@ def _build_generation_config(args: argparse.Namespace, model_id: str, seed: int,
             else None
         ),
     )
+    return apply_sampler_profile(cfg)
 
 
 
@@ -208,6 +226,7 @@ def cmd_generate_grid(args: argparse.Namespace) -> int:
     models = _csv_list(args.models)
     methods = _csv_list(args.methods)
     temperatures = _csv_floats(args.temperatures)
+    sampler_profiles = _csv_sampler_profiles(getattr(args, "sampler_profiles", "manual"))
     seeds = _csv_ints(args.seeds)
     model_paths = _load_model_path_map(args.model_path_map)
     progress_every = max(1, int(getattr(args, "progress_every", 10)))
@@ -256,21 +275,23 @@ def cmd_generate_grid(args: argparse.Namespace) -> int:
     total_planned = 0
     for _model_id in models:
         for method_name in methods:
-            for _temp in temperatures:
-                for _seed in seeds:
-                    if "dat" in tasks and method_name != "brainstorm_then_select":
-                        total_planned += dat_repeats
-                    if "cdat" in tasks and method_name != "brainstorm_then_select":
-                        total_planned += len(cues)
-                    if "aut" in tasks:
-                        total_planned += len(aut_prompts)
+            for _profile in sampler_profiles:
+                for _temp in temperatures:
+                    for _seed in seeds:
+                        if "dat" in tasks and method_name != "brainstorm_then_select":
+                            total_planned += dat_repeats
+                        if "cdat" in tasks and method_name != "brainstorm_then_select":
+                            total_planned += len(cues)
+                        if "aut" in tasks:
+                            total_planned += len(aut_prompts)
 
     start = time.monotonic()
     last_print_done = 0
     if show_progress:
         print(
             f"[generate-grid] planned_runs={total_planned} "
-            f"models={len(models)} methods={len(methods)} temps={len(temperatures)} seeds={len(seeds)} "
+            f"models={len(models)} methods={len(methods)} sampler_profiles={len(sampler_profiles)} "
+            f"temps={len(temperatures)} seeds={len(seeds)} "
             f"session_id={session_id} stage={phase3_stage or 'none'} token_budget_cap={token_budget_cap or 0}",
             flush=True,
         )
@@ -282,7 +303,196 @@ def cmd_generate_grid(args: argparse.Namespace) -> int:
     quarantined_cells = 0
     total_tokens = 0
     budget_exhausted = False
-    health_state: dict[tuple[str, str, str, int, float], dict[str, Any]] = {}
+    health_state: dict[tuple[str, str, str, str, int, float], dict[str, Any]] = {}
+
+    def report_progress(task_label: str, model_id: str, method_name: str, sampler_profile: str) -> None:
+        nonlocal last_print_done
+        if not show_progress:
+            return
+        should_print = (
+            total_done <= 1
+            or total_done == total_planned
+            or (total_done - last_print_done) >= progress_every
+        )
+        if not should_print:
+            return
+
+        elapsed = max(0.0, time.monotonic() - start)
+        rate = (total_done / elapsed) if elapsed > 0 else 0.0
+        remaining = max(0, total_planned - total_done)
+        eta_seconds = (remaining / rate) if rate > 0 else 0.0
+        pct = (100.0 * total_done / total_planned) if total_planned > 0 else 100.0
+        print(
+            f"[{total_done}/{total_planned} {pct:5.1f}%] "
+            f"elapsed={_format_seconds(elapsed)} "
+            f"eta={_format_seconds(eta_seconds)} "
+            f"rate={rate:.2f} runs/s "
+            f"model={model_id} method={method_name} profile={sampler_profile} task={task_label}",
+            flush=True,
+        )
+        last_print_done = total_done
+
+    def emit_health_event(
+        *,
+        event_type: str,
+        cell_key: tuple[str, str, str, str, int, float],
+        window_n: int,
+        json_rate: float,
+        valid_rate: float,
+        action: str,
+        skipped_estimate: int,
+    ) -> None:
+        nonlocal total_health_events
+        payload = {
+            "event_type": event_type,
+            "cell_key": {
+                "model_id": cell_key[0],
+                "method": cell_key[1],
+                "task_id": cell_key[2],
+                "sampler_profile": cell_key[3],
+                "seed": cell_key[4],
+                "temperature": cell_key[5],
+            },
+            "window_n": window_n,
+            "json_rate": round(json_rate, 6),
+            "valid_rate": round(valid_rate, 6),
+            "action": action,
+            "timestamp_utc": utc_now_iso(),
+            "skipped_estimate": int(skipped_estimate),
+            "session_id": session_id,
+        }
+        append_jsonl(health_events_path, payload)
+        total_health_events += 1
+        if show_progress:
+            print(
+                f"[health] event={event_type} action={action} "
+                f"model={cell_key[0]} method={cell_key[1]} task={cell_key[2]} "
+                f"profile={cell_key[3]} seed={cell_key[4]} temp={cell_key[5]} "
+                f"window_n={window_n} json_rate={json_rate:.3f} valid_rate={valid_rate:.3f} "
+                f"skipped={skipped_estimate}",
+                flush=True,
+            )
+
+    def run_cell(
+        *,
+        model_id: str,
+        method_name: str,
+        method: Any,
+        model: Any,
+        cfg: GenerationConfig,
+        seed: int,
+        task_id: str,
+        cells: list[dict[str, Any]],
+    ) -> None:
+        nonlocal total_created, total_done, total_skipped, quarantined_cells, total_tokens, budget_exhausted
+        if not cells:
+            return
+        cell_key = (model_id, method_name, task_id, cfg.sampler_profile, seed, cfg.temperature)
+        state = health_state.setdefault(
+            cell_key,
+            {"window": deque(maxlen=health_window), "retry_used": False, "quarantined": False},
+        )
+        for idx, spec in enumerate(cells):
+            if budget_exhausted or bool(state["quarantined"]):
+                break
+
+            if token_budget_cap > 0 and total_tokens >= token_budget_cap:
+                remaining = max(0, len(cells) - idx)
+                total_skipped += remaining
+                total_done += remaining
+                budget_exhausted = True
+                if show_progress:
+                    print(
+                        f"[budget] token_budget_cap reached cap={token_budget_cap} tokens={total_tokens} "
+                        f"skipping_remaining={remaining} cell={cell_key}",
+                        flush=True,
+                    )
+                report_progress(f"{task_id}-budget-stop", model_id, method_name, cfg.sampler_profile)
+                break
+
+            task = build_task(
+                task_id,
+                cue=spec.get("cue"),
+                obj=spec.get("object"),
+                context=spec.get("context"),
+            )
+            record = generate_run(
+                task,
+                method,
+                model,
+                cfg,
+                args.output_dir,
+                session_id=session_id,
+                extra_metadata=spec.get("extra_metadata"),
+                phase3_stage=phase3_stage,
+            )
+            total_created += 1
+            total_done += 1
+            total_tokens += int(getattr(record, "tokens_total", 0) or 0)
+            report_progress(task_id, model_id, method_name, cfg.sampler_profile)
+
+            rolling = state["window"]
+            rolling.append(
+                (
+                    bool(record.json_valid),
+                    bool(record.validity_flags.get("valid", False)),
+                )
+            )
+            if len(rolling) < health_min_samples:
+                continue
+
+            window_n = len(rolling)
+            json_rate = sum(1 for j, _ in rolling if j) / window_n
+            valid_rate = sum(1 for _, v in rolling if v) / window_n
+            gate_failed = json_rate < health_min_json or valid_rate < health_min_valid
+            if not gate_failed:
+                continue
+
+            remaining = max(0, len(cells) - idx - 1)
+            if health_action == "retry_once" and not bool(state["retry_used"]):
+                state["retry_used"] = True
+                rolling.clear()
+                emit_health_event(
+                    event_type="health_gate_trip",
+                    cell_key=cell_key,
+                    window_n=window_n,
+                    json_rate=json_rate,
+                    valid_rate=valid_rate,
+                    action="retry_once",
+                    skipped_estimate=0,
+                )
+                continue
+
+            if health_action == "stop_run":
+                emit_health_event(
+                    event_type="health_gate_trip",
+                    cell_key=cell_key,
+                    window_n=window_n,
+                    json_rate=json_rate,
+                    valid_rate=valid_rate,
+                    action="stop_run",
+                    skipped_estimate=remaining,
+                )
+                raise RuntimeError(
+                    f"Health gate stop: cell={cell_key} "
+                    f"json_rate={json_rate:.3f} valid_rate={valid_rate:.3f}"
+                )
+
+            state["quarantined"] = True
+            quarantined_cells += 1
+            total_skipped += remaining
+            total_done += remaining
+            emit_health_event(
+                event_type="cell_quarantined",
+                cell_key=cell_key,
+                window_n=window_n,
+                json_rate=json_rate,
+                valid_rate=valid_rate,
+                action="quarantine_cell",
+                skipped_estimate=remaining,
+            )
+            report_progress(f"{task_id}-quarantined", model_id, method_name, cfg.sampler_profile)
+            break
 
     for model_id in models:
         model = create_model_adapter(
@@ -306,240 +516,154 @@ def cmd_generate_grid(args: argparse.Namespace) -> int:
                 adaptive_min_iters=getattr(args, "adaptive_min_iters", 1),
                 trigger_objective=getattr(args, "trigger_objective", None),
             )
-            for temp in temperatures:
-                for seed in seeds:
-                    cfg = _build_generation_config(args, model_id=model_id, seed=seed, temperature=temp)
+            for sampler_profile in sampler_profiles:
+                setattr(args, "sampler_profile", sampler_profile)
+                for temp in temperatures:
+                    for seed in seeds:
+                        cfg = _build_generation_config(args, model_id=model_id, seed=seed, temperature=temp)
 
-                    def report_progress(task_label: str) -> None:
-                        nonlocal last_print_done
-                        if not show_progress:
-                            return
-                        should_print = (
-                            total_done <= 1
-                            or total_done == total_planned
-                            or (total_done - last_print_done) >= progress_every
-                        )
-                        if not should_print:
-                            return
-
-                        elapsed = max(0.0, time.monotonic() - start)
-                        rate = (total_done / elapsed) if elapsed > 0 else 0.0
-                        remaining = max(0, total_planned - total_done)
-                        eta_seconds = (remaining / rate) if rate > 0 else 0.0
-                        pct = (100.0 * total_done / total_planned) if total_planned > 0 else 100.0
-                        print(
-                            f"[{total_done}/{total_planned} {pct:5.1f}%] "
-                            f"elapsed={_format_seconds(elapsed)} "
-                            f"eta={_format_seconds(eta_seconds)} "
-                            f"rate={rate:.2f} runs/s "
-                            f"model={model_id} method={method_name} task={task_label}",
-                            flush=True,
-                        )
-                        last_print_done = total_done
-
-                    def emit_health_event(
-                        *,
-                        event_type: str,
-                        cell_key: tuple[str, str, str, int, float],
-                        window_n: int,
-                        json_rate: float,
-                        valid_rate: float,
-                        action: str,
-                        skipped_estimate: int,
-                    ) -> None:
-                        nonlocal total_health_events
-                        payload = {
-                            "event_type": event_type,
-                            "cell_key": {
-                                "model_id": cell_key[0],
-                                "method": cell_key[1],
-                                "task_id": cell_key[2],
-                                "seed": cell_key[3],
-                                "temperature": cell_key[4],
-                            },
-                            "window_n": window_n,
-                            "json_rate": round(json_rate, 6),
-                            "valid_rate": round(valid_rate, 6),
-                            "action": action,
-                            "timestamp_utc": utc_now_iso(),
-                            "skipped_estimate": int(skipped_estimate),
-                            "session_id": session_id,
-                        }
-                        append_jsonl(health_events_path, payload)
-                        total_health_events += 1
-                        if show_progress:
-                            print(
-                                f"[health] event={event_type} action={action} "
-                                f"model={cell_key[0]} method={cell_key[1]} task={cell_key[2]} "
-                                f"seed={cell_key[3]} temp={cell_key[4]} "
-                                f"window_n={window_n} json_rate={json_rate:.3f} valid_rate={valid_rate:.3f} "
-                                f"skipped={skipped_estimate}",
-                                flush=True,
+                        if "dat" in tasks and method_name != "brainstorm_then_select":
+                            run_cell(
+                                model_id=model_id,
+                                method_name=method_name,
+                                method=method,
+                                model=model,
+                                cfg=cfg,
+                                seed=seed,
+                                task_id="dat",
+                                cells=[
+                                    {
+                                        "cue": None,
+                                        "object": None,
+                                        "context": None,
+                                        "extra_metadata": {"dat_prompt_id": idx},
+                                    }
+                                    for idx in range(dat_repeats)
+                                ],
                             )
 
-                    def run_cell(task_id: str, cells: list[dict[str, Any]]) -> None:
-                        nonlocal total_created, total_done, total_skipped, quarantined_cells, total_tokens, budget_exhausted
-                        if not cells:
-                            return
-                        cell_key = (model_id, method_name, task_id, seed, temp)
-                        state = health_state.setdefault(
-                            cell_key,
-                            {"window": deque(maxlen=health_window), "retry_used": False, "quarantined": False},
-                        )
-                        for idx, spec in enumerate(cells):
-                            if budget_exhausted:
-                                break
-                            if bool(state["quarantined"]):
-                                break
-
-                            if token_budget_cap > 0 and total_tokens >= token_budget_cap:
-                                remaining = max(0, len(cells) - idx)
-                                total_skipped += remaining
-                                total_done += remaining
-                                budget_exhausted = True
-                                if show_progress:
-                                    print(
-                                        f"[budget] token_budget_cap reached cap={token_budget_cap} tokens={total_tokens} "
-                                        f"skipping_remaining={remaining} cell={cell_key}",
-                                        flush=True,
-                                    )
-                                report_progress(f"{task_id}-budget-stop")
-                                break
-
-                            task = build_task(
-                                task_id,
-                                cue=spec.get("cue"),
-                                obj=spec.get("object"),
-                                context=spec.get("context"),
-                            )
-                            record = generate_run(
-                                task,
-                                method,
-                                model,
-                                cfg,
-                                args.output_dir,
-                                session_id=session_id,
-                                extra_metadata=spec.get("extra_metadata"),
-                                phase3_stage=phase3_stage,
-                            )
-                            total_created += 1
-                            total_done += 1
-                            total_tokens += int(getattr(record, "tokens_total", 0) or 0)
-                            report_progress(task_id)
-
-                            rolling = state["window"]
-                            rolling.append(
-                                (
-                                    bool(record.json_valid),
-                                    bool(record.validity_flags.get("valid", False)),
-                                )
-                            )
-                            if len(rolling) < health_min_samples:
-                                continue
-
-                            window_n = len(rolling)
-                            json_rate = sum(1 for j, _ in rolling if j) / window_n
-                            valid_rate = sum(1 for _, v in rolling if v) / window_n
-                            gate_failed = json_rate < health_min_json or valid_rate < health_min_valid
-                            if not gate_failed:
-                                continue
-
-                            remaining = max(0, len(cells) - idx - 1)
-                            if health_action == "retry_once" and not bool(state["retry_used"]):
-                                state["retry_used"] = True
-                                rolling.clear()
-                                emit_health_event(
-                                    event_type="health_gate_trip",
-                                    cell_key=cell_key,
-                                    window_n=window_n,
-                                    json_rate=json_rate,
-                                    valid_rate=valid_rate,
-                                    action="retry_once",
-                                    skipped_estimate=0,
-                                )
-                                continue
-
-                            if health_action == "stop_run":
-                                emit_health_event(
-                                    event_type="health_gate_trip",
-                                    cell_key=cell_key,
-                                    window_n=window_n,
-                                    json_rate=json_rate,
-                                    valid_rate=valid_rate,
-                                    action="stop_run",
-                                    skipped_estimate=remaining,
-                                )
-                                raise RuntimeError(
-                                    f"Health gate stop: cell={cell_key} "
-                                    f"json_rate={json_rate:.3f} valid_rate={valid_rate:.3f}"
-                                )
-
-                            state["quarantined"] = True
-                            quarantined_cells += 1
-                            total_skipped += remaining
-                            total_done += remaining
-                            emit_health_event(
-                                event_type="cell_quarantined",
-                                cell_key=cell_key,
-                                window_n=window_n,
-                                json_rate=json_rate,
-                                valid_rate=valid_rate,
-                                action="quarantine_cell",
-                                skipped_estimate=remaining,
-                            )
-                            report_progress(f"{task_id}-quarantined")
-                            break
-
-                    if "dat" in tasks and method_name != "brainstorm_then_select":
-                        run_cell(
-                            "dat",
-                            [
+                        if "cdat" in tasks and method_name != "brainstorm_then_select":
+                            cdat_cells = [
                                 {
-                                    "cue": None,
+                                    "cue": cue_spec.cue,
                                     "object": None,
                                     "context": None,
-                                    "extra_metadata": {"dat_prompt_id": idx},
+                                    "extra_metadata": {
+                                        "cue_category": cue_spec.category,
+                                        "cue_index": cue_offset + idx,
+                                    },
                                 }
-                                for idx in range(dat_repeats)
-                            ],
-                        )
+                                for idx, cue_spec in enumerate(cues)
+                            ]
+                            run_cell(
+                                model_id=model_id,
+                                method_name=method_name,
+                                method=method,
+                                model=model,
+                                cfg=cfg,
+                                seed=seed,
+                                task_id="cdat",
+                                cells=cdat_cells,
+                            )
+                            if budget_exhausted:
+                                break
 
-                    if "cdat" in tasks and method_name != "brainstorm_then_select":
-                        cdat_cells = [
-                            {
-                                "cue": cue_spec.cue,
-                                "object": None,
-                                "context": None,
-                                "extra_metadata": {
-                                    "cue_category": cue_spec.category,
-                                    "cue_index": cue_offset + idx,
-                                },
-                            }
-                            for idx, cue_spec in enumerate(cues)
-                        ]
-                        run_cell("cdat", cdat_cells)
-                        if budget_exhausted:
-                            break
-
-                    if "aut" in tasks:
-                        aut_cells = [
-                            {
-                                "cue": None,
-                                "object": p.object_name,
-                                "context": p.context,
-                                "extra_metadata": {"aut_prompt_index": aut_offset + idx},
-                            }
-                            for idx, p in enumerate(aut_prompts)
-                        ]
-                        run_cell("aut", aut_cells)
-                        if budget_exhausted:
-                            break
+                        if "aut" in tasks:
+                            aut_cells = [
+                                {
+                                    "cue": None,
+                                    "object": p.object_name,
+                                    "context": p.context,
+                                    "extra_metadata": {"aut_prompt_index": aut_offset + idx},
+                                }
+                                for idx, p in enumerate(aut_prompts)
+                            ]
+                            run_cell(
+                                model_id=model_id,
+                                method_name=method_name,
+                                method=method,
+                                model=model,
+                                cfg=cfg,
+                                seed=seed,
+                                task_id="aut",
+                                cells=aut_cells,
+                            )
+                            if budget_exhausted:
+                                break
+                    if budget_exhausted:
+                        break
                 if budget_exhausted:
                     break
             if budget_exhausted:
                 break
         if budget_exhausted:
             break
+
+    experiment_manifest = {
+        "schema_version": 1,
+        "kind": "creativeai_experiment_manifest",
+        "created_at_utc": utc_now_iso(),
+        "session_id": session_id,
+        "stage": phase3_stage,
+        "command": sys.argv,
+        "grid": {
+            "tasks": tasks,
+            "models": models,
+            "methods": methods,
+            "temperatures": temperatures,
+            "seeds": seeds,
+            "sampler_profiles": sampler_profiles,
+            "top_p": float(getattr(args, "top_p", 0.0)),
+            "top_k": int(getattr(args, "top_k", 0)),
+            "min_p": float(getattr(args, "min_p", 0.0)),
+            "typical_p": float(getattr(args, "typical_p", 0.0)),
+            "repeat_penalty": float(getattr(args, "repeat_penalty", 1.0)),
+            "frequency_penalty": float(getattr(args, "frequency_penalty", 0.0)),
+            "presence_penalty": float(getattr(args, "presence_penalty", 0.0)),
+            "mirostat_mode": int(getattr(args, "mirostat_mode", 0)),
+            "mirostat_tau": float(getattr(args, "mirostat_tau", 0.0)),
+            "mirostat_eta": float(getattr(args, "mirostat_eta", 0.0)),
+            "strict_json": bool(getattr(args, "strict_json", False)),
+            "max_retries": int(getattr(args, "max_retries", 0)),
+            "prompt_mode": str(getattr(args, "prompt_mode", "")),
+            "grammar_mode": str(getattr(args, "grammar_mode", "")),
+        },
+        "runtime": {
+            "backend": str(getattr(args, "backend", "")),
+            "model_path_map": str(getattr(args, "model_path_map", "")),
+            "n_gpu_layers": int(getattr(args, "n_gpu_layers", 0)),
+            "n_ctx": int(getattr(args, "n_ctx", 0)),
+            "n_threads": int(getattr(args, "n_threads", 0)),
+            "n_batch": int(getattr(args, "n_batch", 0)),
+            "n_ubatch": int(getattr(args, "n_ubatch", 0)),
+            "n_threads_batch": int(getattr(args, "n_threads_batch", 0)),
+        },
+        "health_gate": {
+            "health_window": health_window,
+            "health_min_json": health_min_json,
+            "health_min_valid": health_min_valid,
+            "health_min_samples": health_min_samples,
+            "health_action": health_action,
+            "health_events_path": str(health_events_path),
+        },
+        "outputs": {
+            "runs_dir": str(out_dir),
+            "runs_jsonl": str(runs_jsonl),
+            "experiment_manifest": str(out_dir / "experiment_manifest.json"),
+        },
+        "results": {
+            "planned_runs": total_planned,
+            "runs_created": total_created,
+            "runs_skipped": total_skipped,
+            "quarantined_cells": quarantined_cells,
+            "health_events": total_health_events,
+            "tokens_total": total_tokens,
+            "token_budget_cap": token_budget_cap,
+            "budget_exhausted": budget_exhausted,
+        },
+        "environment": environment_snapshot(),
+    }
+    write_json(out_dir / "experiment_manifest.json", experiment_manifest)
 
     print(
         json.dumps(
@@ -586,8 +710,14 @@ def cmd_score(args: argparse.Namespace) -> int:
         payload["metadata"]["compute_group_id"] = run.get(
             "compute_group_id", run.get("metadata", {}).get("compute_group_id", "")
         )
+        payload["metadata"]["decoding_fingerprint"] = run.get("metadata", {}).get("decoding_fingerprint", "")
+        payload["metadata"]["decoding_settings"] = run.get("metadata", {}).get("decoding_settings", {})
+        payload["metadata"]["sampler_profile"] = run.get("metadata", {}).get(
+            "sampler_profile", run.get("config", {}).get("sampler_profile", "")
+        )
         payload["metadata"]["phase3_stage"] = run.get("phase3_stage", run.get("metadata", {}).get("phase3_stage", ""))
         payload["metadata"]["parse_mode"] = run.get("parse_mode", run.get("metadata", {}).get("parse_mode", "unknown"))
+        payload["metadata"]["retry_count"] = run.get("retry_count", run.get("metadata", {}).get("retry_count", 0))
         payload["metadata"]["json_valid"] = run.get("json_valid", run.get("validity_flags", {}).get("json_valid", False))
         payload["metadata"]["output_preview"] = " | ".join(run.get("output", [])[:3])
         scored.append(payload)
@@ -695,6 +825,86 @@ def cmd_audit_homogeneity(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_analyze_samplers(args: argparse.Namespace) -> int:
+    scores = infer_records(args.scores)
+    session_id = ""
+    if bool(getattr(args, "require_single_session", True)):
+        session_id = _require_single_session(scores, source_label=f"scores input ({args.scores})")
+    payload = sampler_profile_analysis(
+        scores,
+        baseline_profile=str(args.baseline_profile),
+        exclude_invalid=bool(args.exclude_invalid),
+    )
+    payload["session_id"] = session_id
+    out_dir = Path(args.output_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_json = out_dir / "sampler_analysis.json"
+    write_json(out_json, payload)
+
+    report_path = out_dir / "SAMPLER_ANALYSIS_REPORT.md"
+    lines = [
+        "# Phase 4 Sampler Analysis Report",
+        "",
+        f"- Baseline sampler profile: `{args.baseline_profile}`",
+        f"- Session: `{session_id or 'unknown'}`",
+        f"- Exclude invalid: `{bool(args.exclude_invalid)}`",
+        "",
+        "## Sampler Means",
+    ]
+    for row in payload.get("sampler_summary", []):
+        lines.append(
+            "- {profile}: n={n} objective={obj:.4f} novelty={nov:.4f} appropriateness={app:.4f} "
+            "valid={valid:.2%} json={json_rate:.2%}".format(
+                profile=row.get("sampler_profile", "unknown"),
+                n=int(row.get("n_primary_valid", 0)),
+                obj=float(row.get("objective_mean", 0.0)),
+                nov=float(row.get("novelty_mean", 0.0)),
+                app=float(row.get("appropriateness_mean", 0.0)),
+                valid=float(row.get("primary_valid_rate", 0.0)),
+                json_rate=float(row.get("json_valid_rate", 0.0)),
+            )
+        )
+    lines.extend(["", "## Paired Deltas vs Baseline"])
+    for row in payload.get("paired_deltas_vs_baseline", []):
+        lines.append(
+            "- {profile}: pairs={n} obj_delta={mean:+.4f} [{low:+.4f},{high:+.4f}] "
+            "nov_delta={nov:+.4f} app_delta={app:+.4f}".format(
+                profile=row.get("sampler_profile", "unknown"),
+                n=int(row.get("n_pairs", 0)),
+                mean=float(row.get("objective_delta_mean", 0.0)),
+                low=float(row.get("objective_delta_ci_low", 0.0)),
+                high=float(row.get("objective_delta_ci_high", 0.0)),
+                nov=float(row.get("novelty_delta_mean", 0.0)),
+                app=float(row.get("appropriateness_delta_mean", 0.0)),
+            )
+        )
+    lines.extend(["", "## Pareto Profiles"])
+    for row in payload.get("pareto_profiles", []):
+        lines.append(
+            "- {profile}: novelty={nov:.4f} appropriateness={app:.4f} objective={obj:.4f}".format(
+                profile=row.get("sampler_profile", "unknown"),
+                nov=float(row.get("novelty_mean", 0.0)),
+                app=float(row.get("appropriateness_mean", 0.0)),
+                obj=float(row.get("objective_mean", 0.0)),
+            )
+        )
+    lines.extend(["", f"Raw JSON: `{out_json}`", ""])
+    report_path.write_text("\n".join(lines), encoding="utf-8")
+
+    print(
+        json.dumps(
+            {
+                "analysis": str(out_json),
+                "report": str(report_path),
+                "profile_count": len(payload.get("sampler_summary", [])),
+                "session_id": session_id,
+            },
+            indent=2,
+        )
+    )
+    return 0
+
+
 
 def cmd_prepare_human_slice(args: argparse.Namespace) -> int:
     scores = infer_records(args.scores)
@@ -769,6 +979,16 @@ def build_parser() -> argparse.ArgumentParser:
     gen.add_argument("--seed", type=int, required=True)
     gen.add_argument("--temperature", type=float, required=True)
     gen.add_argument("--top-p", type=float, default=0.9)
+    gen.add_argument("--sampler-profile", choices=sampler_profile_names(), default="manual")
+    gen.add_argument("--top-k", type=int, default=0)
+    gen.add_argument("--min-p", type=float, default=0.0)
+    gen.add_argument("--typical-p", type=float, default=0.0)
+    gen.add_argument("--repeat-penalty", type=float, default=1.0)
+    gen.add_argument("--frequency-penalty", type=float, default=0.0)
+    gen.add_argument("--presence-penalty", type=float, default=0.0)
+    gen.add_argument("--mirostat-mode", type=int, default=0)
+    gen.add_argument("--mirostat-tau", type=float, default=0.0)
+    gen.add_argument("--mirostat-eta", type=float, default=0.0)
     gen.add_argument("--max-tokens", type=int, default=512)
     gen.add_argument("--quantization", default="q4_k_m")
     gen.add_argument("--strict-json", action=argparse.BooleanOptionalAction, default=True)
@@ -783,7 +1003,7 @@ def build_parser() -> argparse.ArgumentParser:
     gen.add_argument("--trigger-objective", type=float, default=0.0)
     gen.add_argument("--token-budget-per-prompt", type=int, default=0)
     gen.add_argument("--compute-tag", default="")
-    gen.add_argument("--stage", choices=["micro", "main", "confirm", "aux"], default="main")
+    gen.add_argument("--stage", choices=["micro", "main", "confirm", "aux", "phase4"], default="main")
     gen.add_argument("--cue", default=None)
     gen.add_argument("--object", dest="object_name", default=None)
     gen.add_argument("--context", default=None)
@@ -810,6 +1030,17 @@ def build_parser() -> argparse.ArgumentParser:
     grid.add_argument("--temperatures", default="0.2,0.7,1.0,1.3")
     grid.add_argument("--seeds", default="11,37,73,101,149")
     grid.add_argument("--top-p", type=float, default=0.9)
+    grid.add_argument("--sampler-profile", choices=sampler_profile_names(), default="manual")
+    grid.add_argument("--sampler-profiles", default="manual")
+    grid.add_argument("--top-k", type=int, default=0)
+    grid.add_argument("--min-p", type=float, default=0.0)
+    grid.add_argument("--typical-p", type=float, default=0.0)
+    grid.add_argument("--repeat-penalty", type=float, default=1.0)
+    grid.add_argument("--frequency-penalty", type=float, default=0.0)
+    grid.add_argument("--presence-penalty", type=float, default=0.0)
+    grid.add_argument("--mirostat-mode", type=int, default=0)
+    grid.add_argument("--mirostat-tau", type=float, default=0.0)
+    grid.add_argument("--mirostat-eta", type=float, default=0.0)
     grid.add_argument("--max-tokens", type=int, default=512)
     grid.add_argument("--quantization", default="q4_k_m")
     grid.add_argument("--strict-json", action=argparse.BooleanOptionalAction, default=True)
@@ -824,7 +1055,7 @@ def build_parser() -> argparse.ArgumentParser:
     grid.add_argument("--trigger-objective", type=float, default=0.0)
     grid.add_argument("--token-budget-per-prompt", type=int, default=0)
     grid.add_argument("--compute-tag", default="")
-    grid.add_argument("--stage", choices=["micro", "main", "confirm", "aux"], default="main")
+    grid.add_argument("--stage", choices=["micro", "main", "confirm", "aux", "phase4"], default="main")
     grid.add_argument("--token-budget-cap", type=int, default=0)
     grid.add_argument("--dat-repeats", type=int, default=1)
     grid.add_argument("--cue-offset", type=int, default=0)
@@ -868,6 +1099,14 @@ def build_parser() -> argparse.ArgumentParser:
     homo.add_argument("--by-task", action="store_true")
     homo.add_argument("--output-dir", default="outputs/analysis")
     homo.set_defaults(func=cmd_audit_homogeneity)
+
+    samplers = sub.add_parser("analyze-samplers", help="Analyze decoding sampler profiles")
+    samplers.add_argument("--scores", required=True, help="scores.jsonl")
+    samplers.add_argument("--baseline-profile", default="default_nucleus")
+    samplers.add_argument("--exclude-invalid", action=argparse.BooleanOptionalAction, default=True)
+    samplers.add_argument("--require-single-session", action=argparse.BooleanOptionalAction, default=True)
+    samplers.add_argument("--output-dir", default="outputs/analysis")
+    samplers.set_defaults(func=cmd_analyze_samplers)
 
     hslice = sub.add_parser("prepare-human-slice", help="Create stratified sample for human rating")
     hslice.add_argument("--scores", required=True)

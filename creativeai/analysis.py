@@ -111,6 +111,161 @@ def frontier_points(
     return points, extended
 
 
+def _sampler_profile(record: dict[str, Any]) -> str:
+    metadata = record.get("metadata", {})
+    if not isinstance(metadata, dict):
+        metadata = {}
+    profile = str(metadata.get("sampler_profile", "")).strip()
+    if profile:
+        return profile
+    settings = metadata.get("decoding_settings", {})
+    if isinstance(settings, dict):
+        profile = str(settings.get("sampler_profile", "")).strip()
+        if profile:
+            return profile
+    return "manual"
+
+
+def _sampler_pair_key(record: dict[str, Any]) -> tuple[Any, ...]:
+    metadata = record.get("metadata", {})
+    if not isinstance(metadata, dict):
+        metadata = {}
+    return (
+        str(record.get("model_id", "")),
+        str(record.get("method", "")),
+        str(record.get("task_id", "")),
+        _prompt_key(record),
+        metadata.get("seed"),
+    )
+
+
+def sampler_profile_analysis(
+    records: list[dict[str, Any]],
+    baseline_profile: str = "default_nucleus",
+    exclude_invalid: bool = True,
+) -> dict[str, Any]:
+    rows = [r for r in records if _is_primary_valid(r)] if exclude_invalid else list(records)
+    all_rows = list(records)
+
+    grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    all_grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for rec in rows:
+        grouped[_sampler_profile(rec)].append(rec)
+    for rec in all_rows:
+        all_grouped[_sampler_profile(rec)].append(rec)
+
+    summary: list[dict[str, Any]] = []
+    for profile in sorted(all_grouped):
+        profile_all = all_grouped[profile]
+        profile_valid = grouped.get(profile, [])
+        objectives = [
+            frontier_objective(float(r.get("novelty", 0.0)), float(r.get("appropriateness", 0.0)))
+            for r in profile_valid
+        ]
+        novelty = [float(r.get("novelty", 0.0)) for r in profile_valid]
+        appropriateness = [float(r.get("appropriateness", 0.0)) for r in profile_valid]
+        usefulness = [float(r.get("usefulness", 0.0)) for r in profile_valid]
+        tokens = [
+            float((r.get("metadata", {}) if isinstance(r.get("metadata", {}), dict) else {}).get("tokens_total", 0.0))
+            for r in profile_valid
+        ]
+        retries = [
+            float((r.get("metadata", {}) if isinstance(r.get("metadata", {}), dict) else {}).get("retry_count", 0.0))
+            for r in profile_valid
+        ]
+        valid_n = len(profile_valid)
+        total_n = len(profile_all)
+        json_valid_n = 0
+        for r in profile_all:
+            flags = r.get("validity_flags", {}) if isinstance(r.get("validity_flags", {}), dict) else {}
+            metadata = r.get("metadata", {}) if isinstance(r.get("metadata", {}), dict) else {}
+            json_valid_n += 1 if bool(metadata.get("json_valid", flags.get("json_valid", False))) else 0
+        low, mean, high = bootstrap_mean_ci(objectives)
+        summary.append(
+            {
+                "sampler_profile": profile,
+                "n_total": total_n,
+                "n_primary_valid": valid_n,
+                "primary_valid_rate": (valid_n / total_n) if total_n else 0.0,
+                "json_valid_rate": (json_valid_n / total_n) if total_n else 0.0,
+                "objective_mean": mean,
+                "objective_ci_low": low,
+                "objective_ci_high": high,
+                "novelty_mean": (sum(novelty) / len(novelty)) if novelty else 0.0,
+                "appropriateness_mean": (sum(appropriateness) / len(appropriateness)) if appropriateness else 0.0,
+                "usefulness_mean": (sum(usefulness) / len(usefulness)) if usefulness else 0.0,
+                "tokens_mean": (sum(tokens) / len(tokens)) if tokens else 0.0,
+                "retry_count_mean": (sum(retries) / len(retries)) if retries else 0.0,
+            }
+        )
+
+    by_key: dict[tuple[Any, ...], dict[str, dict[str, Any]]] = defaultdict(dict)
+    for rec in rows:
+        by_key[_sampler_pair_key(rec)][_sampler_profile(rec)] = rec
+
+    paired_deltas: list[dict[str, Any]] = []
+    profiles = sorted(grouped)
+    for profile in profiles:
+        if profile == baseline_profile:
+            continue
+        obj_deltas: list[float] = []
+        novelty_deltas: list[float] = []
+        app_deltas: list[float] = []
+        for bucket in by_key.values():
+            if profile not in bucket or baseline_profile not in bucket:
+                continue
+            a = bucket[profile]
+            b = bucket[baseline_profile]
+            obj_a = frontier_objective(float(a.get("novelty", 0.0)), float(a.get("appropriateness", 0.0)))
+            obj_b = frontier_objective(float(b.get("novelty", 0.0)), float(b.get("appropriateness", 0.0)))
+            obj_deltas.append(obj_a - obj_b)
+            novelty_deltas.append(float(a.get("novelty", 0.0)) - float(b.get("novelty", 0.0)))
+            app_deltas.append(float(a.get("appropriateness", 0.0)) - float(b.get("appropriateness", 0.0)))
+        obj_low, obj_mean, obj_high = bootstrap_mean_ci(obj_deltas)
+        _, nov_mean, _ = bootstrap_mean_ci(novelty_deltas)
+        _, app_mean, _ = bootstrap_mean_ci(app_deltas)
+        paired_deltas.append(
+            {
+                "sampler_profile": profile,
+                "baseline_profile": baseline_profile,
+                "n_pairs": len(obj_deltas),
+                "objective_delta_mean": obj_mean,
+                "objective_delta_ci_low": obj_low,
+                "objective_delta_ci_high": obj_high,
+                "novelty_delta_mean": nov_mean,
+                "appropriateness_delta_mean": app_mean,
+            }
+        )
+
+    pareto: list[dict[str, Any]] = []
+    for row in summary:
+        dominated = False
+        for other in summary:
+            if other is row:
+                continue
+            better_or_equal = (
+                float(other.get("novelty_mean", 0.0)) >= float(row.get("novelty_mean", 0.0))
+                and float(other.get("appropriateness_mean", 0.0)) >= float(row.get("appropriateness_mean", 0.0))
+            )
+            strictly_better = (
+                float(other.get("novelty_mean", 0.0)) > float(row.get("novelty_mean", 0.0))
+                or float(other.get("appropriateness_mean", 0.0)) > float(row.get("appropriateness_mean", 0.0))
+            )
+            if better_or_equal and strictly_better:
+                dominated = True
+                break
+        if not dominated:
+            pareto.append(row)
+
+    return {
+        "baseline_profile": baseline_profile,
+        "exclude_invalid": exclude_invalid,
+        "sampler_summary": summary,
+        "paired_deltas_vs_baseline": paired_deltas,
+        "pareto_profiles": pareto,
+    }
+
+
 
 def _normalize_model_family(model_id: str) -> tuple[str, bool]:
     m = model_id.lower()

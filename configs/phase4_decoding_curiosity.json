@@ -1,0 +1,38 @@
+{
+  "design": "phase4_decoding_curiosity_v1",
+  "hypothesis": "Non-greedy sampler profiles can expose latent creative diversity without repeated prompting.",
+  "tasks": "cdat,aut",
+  "aux_tasks": "dat",
+  "methods": "one_shot",
+  "optional_controls": "best_of_k_one_shot",
+  "models": "qwen2.5-3b-instruct,qwen2.5-3b",
+  "temperatures": "0.7",
+  "sampler_profiles": "low_temp,default_nucleus,high_temp,spread_topk_minp,anti_repetition,mirostat",
+  "seeds": "11,37,73",
+  "limit_cues": 8,
+  "limit_aut": 8,
+  "cue_offset": 0,
+  "aut_offset": 0,
+  "dat_repeats": 6,
+  "top_p": 0.9,
+  "max_tokens": 224,
+  "token_budget_per_prompt": 224,
+  "quantization": "q4_k_m",
+  "strict_json": true,
+  "max_retries": 4,
+  "prompt_mode": "auto",
+  "grammar_mode": "auto",
+  "health": {
+    "window": 20,
+    "min_json": 0.95,
+    "min_valid": 0.9,
+    "min_samples": 20,
+    "action": "quarantine_cell"
+  },
+  "acceptance": {
+    "baseline_sampler_profile": "default_nucleus",
+    "min_pairs": 40,
+    "max_primary_invalid_rate": 0.05,
+    "claim_language": "decoding-accessed latent diversity, not permanent model curiosity"
+  }
+}
