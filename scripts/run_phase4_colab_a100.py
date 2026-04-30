@@ -104,7 +104,11 @@ def write_json(path: Path, payload: dict[str, object]) -> None:
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        description="Run Phase 4 decoding sampler confirmation on Colab/A100 without a notebook."
+        description=(
+            "Run Phase 4 decoding sampler confirmation on Colab/A100 without a notebook. "
+            "If the GitHub repo is private, clone it in Colab using a PAT (e.g. Colab secret GITHUB_TOKEN) "
+            "before invoking this script."
+        )
     )
     p.add_argument("--root", default=".", help="Repository root in Colab.")
     p.add_argument("--output-root", default="outputs/phase4_colab_a100_mistral_v1")
