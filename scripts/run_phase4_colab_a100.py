@@ -63,6 +63,8 @@ def maybe_install_deps(root: Path, cuda: bool) -> None:
             ],
             env=env,
         )
+    else:
+        run([sys.executable, "-m", "pip", "install", "llama-cpp-python>=0.2.90"])
     run([sys.executable, "-m", "pip", "install", "-e", ".[data]", "huggingface_hub"], cwd=root)
 
 
