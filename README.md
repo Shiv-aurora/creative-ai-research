@@ -1,20 +1,36 @@
-# CreativeAI: Creativity Under Constraints
+# CreativeAI
 
-This repository implements a local-first research harness for studying LLM creativity as a novelty-appropriateness frontier.
+**Creativity under constraints** — a local-first research harness for studying how large language models trade **novelty** against **appropriateness** when generation is bounded by task structure, decoding, and compute.
 
-## Implemented Capabilities
+This repository is **ongoing research** by **Shivam Arora**. The codebase was recently made public while the full experimental stack (scripts, phase configs, and reproducibility paths) is still being exercised and hardened. Treat interfaces, default grids, and auxiliary scripts as **live**: they may change as runs complete and analysis tightens. Issues and reproducibility reports are welcome.
 
-- Reproducible run records with immutable manifests (`run_id`, git hash, model hash, backend, quantization, timestamp).
-- Tasks: `dat`, `cdat`, `aut`.
-- Methods: `one_shot`, `best_of_k_one_shot`, `restlessness_best`, `restlessness_last_iter`, `restlessness_adaptive`, `brainstorm_then_select`.
-- Scoring: novelty, appropriateness, usefulness proxy, failure flags.
-- Analysis: frontier plots with bootstrap CIs, base-vs-instruct shift, best-of-N under token budget, paired prompt-level deltas, compute-matched summaries, efficiency tables.
-- Homogeneity audit: nearest-neighbor similarity, compactness, self-BLEU, diversity index (pooled or task-stratified).
-- Human calibration helpers: stratified rating slice + calibration gate metrics.
-- Cross-backend trend comparison utility (MPS vs CUDA runs).
-- Strict JSON generation mode with retry budget and parse provenance tracking.
-- Runtime health gate + cell quarantine + session lineage checks.
-- Token/call accounting on every run for compute-matched analysis.
+---
+
+## Why this project exists
+
+Creativity in humans and machines is rarely “more random = more creative.” Psychometric and cognitive work typically treats creative products as lying on a **frontier**: outputs should be **original** relative to a reference class *and* **appropriate** to the goal — novelty without fit is not the same construct. For LLMs, that tension is operational: temperature, best-of-N, iterative refinement, and instruction style all move points on a novelty–appropriateness plane in ways that are easy to confound with generic fluency or length.
+
+**CreativeAI** is a deliberately **instrumented** harness: every run records immutable metadata (identifiers, git revision, model and backend fingerprints, quantization, timestamps), supports multiple **tasks** and **generation methods**, attaches **automatic scores** (with explicit failure modes and calibration hooks), and ships **analysis** utilities so comparisons can be made under **matched compute** and **paired prompts** where possible. The goal is not a single leaderboard score but **traceable** evidence about *where* on the frontier different stacks sit — and how homogeneous “creative” outputs are across seeds and methods.
+
+---
+
+## What is implemented today
+
+- **Run ledger**: reproducible run records with immutable manifests (`run_id`, git hash, model hash, backend, quantization, timestamp).
+- **Tasks**: `dat`, `cdat`, `aut` (divergent-style probes with different scoring geometry).
+- **Methods**: `one_shot`, `best_of_k_one_shot`, `restlessness_best`, `restlessness_last_iter`, `restlessness_adaptive`, `brainstorm_then_select`.
+- **Scoring**: novelty, appropriateness, a conservative usefulness proxy, and structured failure flags.
+- **Analysis**: frontier plots with bootstrap confidence intervals, base-vs-instruct shifts, best-of-N under token budget, paired prompt-level deltas, compute-matched summaries, efficiency tables.
+- **Homogeneity audit**: nearest-neighbor similarity, compactness, self-BLEU, diversity index (pooled or task-stratified).
+- **Human calibration**: stratified rating slices and calibration gate metrics.
+- **Cross-backend comparison**: e.g. MPS vs CUDA trend checks.
+- **Strict JSON generation**: retry budget with parse provenance.
+- **Operational guards**: runtime health gate, cell quarantine, session lineage checks.
+- **Accounting**: token and call counts on every run for compute-matched analysis.
+
+For broader literature positioning and open questions, see `deep-research-report.md` (research notes; not a substitute for cited papers in any eventual write-up).
+
+---
 
 ## Install
 
@@ -24,27 +40,29 @@ source .venv/bin/activate
 pip install .
 ```
 
-Optional for llama.cpp local models:
+Optional dependencies for local **llama.cpp** models and data tooling:
 
 ```bash
 pip install '.[llama,data]'
 ```
 
-Optional for semantic embeddings in scoring:
+Optional **semantic** embeddings in scoring:
 
 ```bash
 pip install '.[semantic]'
 ```
 
-If editable installs are required for local development and your environment skips hidden `.pth` files, use module mode:
+If your environment skips hidden `.pth` files for editable installs, prefer module invocation:
 
 ```bash
 python -m creativeai.cli --help
 ```
 
-## Quick Start (No Model Download Needed)
+---
 
-Run with deterministic mock backend:
+## Quick start (no model download)
+
+The **mock** backend validates the full pipeline without weights:
 
 ```bash
 creativeai generate \
@@ -77,7 +95,9 @@ creativeai audit-homogeneity \
   --output-dir outputs/analysis
 ```
 
-## Full Grid (Plan Defaults)
+---
+
+## Full grid (plan defaults)
 
 ```bash
 creativeai generate-grid \
@@ -92,18 +112,20 @@ creativeai generate-grid \
   --output-dir outputs/runs
 ```
 
-To run with `llama_cpp`, pass `--backend llama_cpp` and `--model-path` (or `--model-path-map`).
+For **llama.cpp**, supply `--backend llama_cpp` and `--model-path` or `--model-path-map`.
 
-## Real MPS Run With Downloaded GGUFs
+---
 
-If you have downloaded local GGUFs and created `model_paths.downloaded.json`, run:
+## Real local runs (Metal / GGUF)
+
+With downloaded GGUF weights and `model_paths.downloaded.json` (see `model_paths.example.json`):
 
 ```bash
 source .venv/bin/activate
 scripts/run_phase1_real_mps.sh
 ```
 
-For a fast real smoke batch:
+Fast smoke batch on real weights:
 
 ```bash
 source .venv/bin/activate
@@ -122,7 +144,7 @@ creativeai generate-grid \
   --output-dir outputs/phase1_real_mini/runs
 ```
 
-Phase 3 staged local run (micro-gate -> main -> confirm -> DAT aux, target 960 runs):
+Staged Phase 3 local driver (micro-gate → main → confirm → DAT aux; large run target):
 
 ```bash
 source .venv/bin/activate
@@ -133,29 +155,55 @@ caffeinate -dimsu env BACKEND=llama_cpp MODEL_PATH_MAP=model_paths.downloaded.js
   outputs/phase3_v3/analysis
 ```
 
-## CLI Reference
+Additional phase scripts and Colab-oriented runners live under `scripts/` and `configs/`; they are part of the same research program and may be updated as batches complete.
 
-- `creativeai generate`
-- `creativeai generate-grid`
-- `creativeai score`
-- `creativeai analyze-frontier`
-- `creativeai audit-homogeneity`
-- `creativeai prepare-human-slice`
-- `creativeai eval-human`
-- `creativeai compare-backends`
+---
 
-## Output Contract
+## CLI reference
 
-- `outputs/runs/*.json`: single run artifact.
-- `outputs/runs/runs.jsonl`: append-only run log.
-- `outputs/scores/scores.jsonl`: append-only score log.
-- `outputs/analysis/frontier_analysis.json`: frontier + shift + best-of-N summary.
-- `outputs/analysis/frontier.png`: frontier plot.
-- `outputs/analysis/homogeneity_audit.json`: homogeneity summary.
+| Command | Role |
+|--------|------|
+| `creativeai generate` | Single configuration run |
+| `creativeai generate-grid` | Cartesian product over tasks, methods, models, temperatures, seeds |
+| `creativeai score` | Score a `runs.jsonl` stream |
+| `creativeai analyze-frontier` | Frontier, shift, best-of-N, paired and compute-matched summaries |
+| `creativeai audit-homogeneity` | Diversity / similarity audit |
+| `creativeai prepare-human-slice` | Stratified slice for human rating |
+| `creativeai eval-human` | Human rating evaluation helpers |
+| `creativeai compare-backends` | Cross-backend trend comparison |
 
-## Notes
+Use `creativeai <command> --help` for full flags.
 
-- Word-level noun checking is format-level (single-token pattern), not linguistic POS tagging.
-- Semantic embedding scoring prefers `sentence-transformers` when available; otherwise it falls back to deterministic hash embeddings.
-- Usefulness is a conservative proxy and must be calibrated with human ratings before strong claims.
-- Mock backend is for pipeline validation only; use `llama_cpp` backend for real experiments.
+---
+
+## Output contract
+
+| Path | Contents |
+|------|----------|
+| `outputs/runs/*.json` | Single-run artifact |
+| `outputs/runs/runs.jsonl` | Append-only run log |
+| `outputs/scores/scores.jsonl` | Append-only score log |
+| `outputs/analysis/frontier_analysis.json` | Frontier, shift, best-of-N summary |
+| `outputs/analysis/frontier.png` | Frontier plot |
+| `outputs/analysis/homogeneity_audit.json` | Homogeneity summary |
+
+---
+
+## Limitations (read before strong claims)
+
+- **Word-level noun checks** in some paths are format-level (single-token pattern), not full linguistic POS tagging.
+- **Semantic scoring** prefers `sentence-transformers` when installed; otherwise it may fall back to deterministic hash embeddings — check your environment before interpreting semantic distance magnitudes.
+- **Usefulness** is a conservative automatic proxy; it is **not** a substitute for human creativity judgments until calibrated (see human slice tooling above).
+- **Mock backend** is for pipeline validation only; empirical claims require real backends and documented model revisions.
+
+---
+
+## License and attribution
+
+If you use this code or derived artifacts, please cite the repository and name the maintainer when appropriate: **Shivam Arora**, *CreativeAI* (ongoing research). A formal paper citation will be added when available.
+
+---
+
+## Contact
+
+**Shivam Arora** — ongoing work; reach out via GitHub issues for bugs, reproducibility, or collaboration aligned with the research goals above.
