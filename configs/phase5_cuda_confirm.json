@@ -1,6 +1,12 @@
 {
+  "design": "phase5_cuda_confirm_v1",
+  "hypothesis": "Sampler profiles that boosted creativity on MPS (anti_repetition, spread_topk_minp) replicate directionally on CUDA across all model families.",
+  "focus": "internal_decoding",
+  "note": "Phase 5 shifts axis from external multi-call methods (restlessness, best_of_k) to internal sampler profiles. one_shot is the method so decoding does the work, not repeated prompting.",
   "tasks": "cdat,aut,dat",
-  "methods": "one_shot,best_of_k_one_shot,restlessness_best,restlessness_last_iter",
+  "methods": "one_shot",
+  "sampler_profiles": "default_nucleus,anti_repetition,spread_topk_minp,mirostat,high_temp",
+  "baseline_sampler_profile": "default_nucleus",
   "models": "gemma-2b,gemma-2b-it,qwen2.5-3b,qwen2.5-3b-instruct,mistral-7b-v0.3,mistral-7b-instruct-v0.3",
   "temperatures": "0.7",
   "seeds": "11,37",
@@ -9,10 +15,24 @@
   "quantization": "q4_k_m",
   "strict_json": true,
   "max_retries": 2,
-  "prompt_mode": "completion",
-  "restlessness_k": 3,
-  "best_of_k": 4,
+  "prompt_mode": "auto",
+  "grammar_mode": "auto",
   "limit_cues": 20,
   "limit_aut": 15,
-  "token_budget": 800
+  "dat_repeats": 6,
+  "token_budget": 256,
+  "health": {
+    "window": 20,
+    "min_json": 0.95,
+    "min_valid": 0.90,
+    "min_samples": 20,
+    "action": "quarantine_cell"
+  },
+  "acceptance": {
+    "baseline_sampler_profile": "default_nucleus",
+    "min_pairs": 40,
+    "max_primary_invalid_rate": 0.05,
+    "claim_language": "sampler profiles expose latent creative diversity on CUDA without repeated prompting"
+  },
+  "grid_estimate": "6 models x 5 profiles x 3 tasks x 2 seeds ~ 1,560 runs (one_shot only)"
 }
