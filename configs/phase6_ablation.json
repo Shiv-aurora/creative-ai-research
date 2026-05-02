@@ -1,0 +1,47 @@
+{
+  "design": "phase6_ablation_v1",
+  "hypothesis": "The anti_repetition gain decomposes into three separable components: (1) elevated temperature, (2) repeat_penalty discouraging exact token repetition, (3) frequency+presence penalties penalising distributional frequency. If penalties_only matches anti_repetition, the mechanism is distributional diversity pressure, not temperature. If repeat_only matches it, the mechanism is explicit token exclusion. Understanding the driver constrains the design space for optimized profiles.",
+  "experiments": [
+    {
+      "name": "ablation",
+      "purpose": "Isolate which component of anti_repetition drives the creativity gain",
+      "profiles": "default_nucleus,anti_repetition,ablation_temp_only,ablation_repeat_only,ablation_penalties_only,anti_repetition_strong",
+      "methods": "one_shot",
+      "note": "6 profiles × 2 models × 2 tasks × 3 seeds = 144 cells"
+    },
+    {
+      "name": "combined_internal_external",
+      "purpose": "Test if anti_repetition compounds with restlessness_best (external method). Is the effect additive?",
+      "profiles": "default_nucleus,anti_repetition",
+      "methods": "one_shot,restlessness_best",
+      "note": "2 profiles × 2 methods × 2 models × 2 tasks × 2 seeds = 32 cells. Requires token-budget matched comparison."
+    }
+  ],
+  "models": "qwen2.5-3b-instruct,mistral-7b-instruct-v0.3",
+  "tasks": "cdat,aut",
+  "temperatures": "0.7",
+  "seeds": "11,37,73",
+  "max_tokens": 256,
+  "quantization": "q4_k_m",
+  "strict_json": true,
+  "max_retries": 2,
+  "prompt_mode": "auto",
+  "grammar_mode": "auto",
+  "limit_cues": 16,
+  "limit_aut": 12,
+  "restlessness_k": 3,
+  "best_of_k": 4,
+  "token_budget": 256,
+  "health": {
+    "window": 20,
+    "min_json": 0.95,
+    "min_valid": 0.90,
+    "min_samples": 20,
+    "action": "quarantine_cell"
+  },
+  "acceptance": {
+    "baseline_sampler_profile": "default_nucleus",
+    "min_pairs": 30,
+    "claim_language": "identifies mechanism driving anti_repetition creativity gain"
+  }
+}

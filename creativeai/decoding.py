@@ -51,6 +51,50 @@ SAMPLER_PROFILES: dict[str, dict[str, Any]] = {
         "mirostat_tau": 5.0,
         "mirostat_eta": 0.1,
     },
+    # ── Phase 6 ablation profiles ─────────────────────────────────────────────
+    # Each isolates one component of anti_repetition to identify the driver.
+    "ablation_temp_only": {
+        # Temperature lifted to 0.9; all penalties at default. Tests: does
+        # a slightly higher temp alone account for the anti_repetition gain?
+        "temperature": 0.9,
+        "top_p": 0.9,
+        "top_k": 40,
+        "repeat_penalty": 1.0,
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+    },
+    "ablation_repeat_only": {
+        # Repeat penalty only at default temp. Tests: does discouraging exact
+        # token repetition drive the novelty gain independently of temperature?
+        "temperature": 0.7,
+        "top_p": 0.9,
+        "top_k": 40,
+        "repeat_penalty": 1.15,
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+    },
+    "ablation_penalties_only": {
+        # Frequency + presence penalties at default temp, no repeat penalty.
+        # Tests: does penalising frequent/present tokens (diversity pressure)
+        # alone shift the frontier?
+        "temperature": 0.7,
+        "top_p": 0.9,
+        "top_k": 40,
+        "repeat_penalty": 1.0,
+        "frequency_penalty": 0.2,
+        "presence_penalty": 0.1,
+    },
+    "anti_repetition_strong": {
+        # Pushed further than anti_repetition. If the ablation shows
+        # penalties drive the effect, this tests whether more is better
+        # or if there's a quality cliff.
+        "temperature": 0.9,
+        "top_p": 0.9,
+        "top_k": 60,
+        "repeat_penalty": 1.25,
+        "frequency_penalty": 0.35,
+        "presence_penalty": 0.15,
+    },
 }
 
 

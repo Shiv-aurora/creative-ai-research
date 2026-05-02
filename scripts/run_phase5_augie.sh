@@ -20,6 +20,15 @@ set -euo pipefail
 echo "Job $SLURM_JOB_ID started $(date)"
 echo "Node: $SLURMD_NODENAME"
 
+# ── CUDA runtime libraries ────────────────────────────────────────────────────
+# llama-cpp-python cu121 wheel links against libcudart.so.12 / libcublas.so.12.
+# Augie has CUDA 13.1 only, so we point .so.12 symlinks at .so.13 in ~/creative-ai-libs.
+# libcuda.so.1 (driver) is only on gpu001; this block is a no-op on the login node.
+module load cuda 2>/dev/null || module load cuda/13 2>/dev/null || true
+
+export LD_LIBRARY_PATH="$HOME/creative-ai-libs:/usr/local/cuda-13.1/lib64:/usr/local/cuda/lib64:${LD_LIBRARY_PATH:-}"
+echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+
 # ── Activate venv ─────────────────────────────────────────────────────────────
 if [ -f "$HOME/creative-ai-venv/bin/activate" ]; then
     source "$HOME/creative-ai-venv/bin/activate"
@@ -30,6 +39,9 @@ else
     exit 1
 fi
 echo "Python: $(which python3)  ($(python3 --version))"
+
+# Verify llama_cpp imports before wasting queue time
+python3 -c "import llama_cpp; print('llama_cpp OK:', llama_cpp.__file__)"
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 REPO="$HOME/creative-ai"
