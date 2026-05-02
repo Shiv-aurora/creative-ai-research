@@ -87,7 +87,7 @@ python3 -m creativeai.cli generate-grid \
     --model-path-map "$MODEL_PATH_MAP" \
     --tasks cdat,aut \
     --methods one_shot,restlessness_best \
-    --sampler-profiles default_nucleus,anti_repetition \
+    --sampler-profiles default_nucleus,anti_repetition,mirostat \
     --models qwen2.5-3b-instruct,mistral-7b-instruct-v0.3 \
     --temperatures 0.7 \
     --seeds 11,37 \
